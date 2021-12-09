@@ -15,16 +15,20 @@
         <button onclick="tab('settingsMenu')" >Settings </button>
     </div>
     <div id="stabFingerMenu">
-        <button onclick="stabFinger(manual)" class="main-btn">Stab finger</button>
+        <button onclick="stabFinger('manual')" class="main-btn">Stab finger</button>
     </div>
     <div id="shopMenu">
         <p id="bloodPerClickUI">Blood Per Click: 1</p>
         <p id="bloodPerAutoClickUI">Automatic Generation: 1</p>
-        <button onclick="buyBloodPerClick()" id="perClickUpgrade" >Upgrade Knife: 10</button>
-        <button onclick="buyBloodPerAutoClick()" id="perClickAutoUpgrade" >Upgrade Altar: 10</button>
+        <div id="button-div">
+            <button onclick="buyBloodPerClick()" id="perClickUpgrade" >Upgrade Knife: 10</button>
+            <button onclick="buyBloodPerAutoClick()" id="perClickAutoUpgrade" >Upgrade Altar: 10</button>
+        </div>    
     </div>
     <div id="settingsMenu">
         <button onclick="clearData()" class="button-dngr">Clear Data!</button>
+        <label for="autosave-time">Autosave Time</label>
+        <input type="range" min="1" max="15" value="5" id="autosave-time">
     </div>
 </body>
 <script src="main.js" charset="utf-8" type="text/javascript"></script>

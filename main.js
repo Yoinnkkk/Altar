@@ -28,8 +28,8 @@ function updateValues() {
     document.getElementById("perClickAutoUpgrade").innerHTML = "Upgrade Altar: " + formatter(gameData.bloodPerAutoClickCost)
 }
 
-var ValueLoader = window.setInterval({
-    updateValues()
+var ValueLoader = window.setInterval( function() { 
+    updateValues() 
 }, 100)
 
 function formatter(number) {
@@ -40,8 +40,8 @@ function formatter(number) {
 }
 
 function stabFinger(type) {
-    if (type == manual) gameData.blood += gameData.bloodPerClick;
-    if (type == automatic) gameData.blood += gameData.bloodPerAutoClick
+    if (type == 'manual') {gameData.blood += gameData.bloodPerClick};
+    if (type == 'automatic') {gameData.blood += gameData.bloodPerAutoClick};
 }
 
 function buyBloodPerClick() {
@@ -64,16 +64,17 @@ function tab(tab) {
     document.getElementById("stabFingerMenu").style.display = "none";
     document.getElementById("shopMenu").style.display = "none";
     document.getElementById("settingsMenu").style.display = "none";
-    document.getElementById(tab).style.display = "inline-block";
+    document.getElementById(tab).style.display = "flex";
 }
 tab("stabFingerMenu");
 
 function clearData() {
     localStorage.removeItem("AltarSave")
+    location.reload(true);
 }
 
 var mainGameLoop = window.setInterval(function() {
-    stabFinger(Automatic);
+    stabFinger('automatic');
 }, 500)
 
 if (typeof savedGame.blood !== "undefined") gameData.blood = savedGame.blood;

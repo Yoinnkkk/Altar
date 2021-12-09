@@ -49,6 +49,17 @@ button:hover {
     font-weight: bolder;
 }
 
+#shopMenu {
+    flex-direction: column;
+    align-items: center;
+}
+
+#shopMenu #button-div {
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+}
+
 #shopMenu button {
     width: 15em;   
 }
@@ -83,3 +94,59 @@ button:hover {
     height: 100%;
     margin: 0;
 }
+
+#settingsMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+  
+
+#settingsMenu label {
+    color: white;
+    font-weight: bolder;
+    margin-top: 1em ;
+    margin-bottom: .5em;
+}
+  /* The slider itself */
+  #settingsMenu input {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 10em; /* Full-width */
+    height: 1em; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  border-radius: 5px; 
+  }
+  
+  /* Mouse-over effects */
+  #settingsMenu input:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  #settingsMenu input::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    border-radius: 50%;
+    border-color: white;
+    border-style: solid;
+    background: var(--colour); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  #settingsMenu input::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: var(--colour); /* Green background */
+    border-radius: 50%;
+    border-color: white;
+    border-style: solid;
+    cursor: pointer; /* Cursor on hover */
+  }
