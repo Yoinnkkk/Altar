@@ -8,23 +8,23 @@
     <title>Altar</title>
 </head>
 <body style="background-color: rgb(45, 54, 63);">
-    <p id="bloodGained" class="blood">Blood; 0</p>
+    <p id="bloodGained" class="blood">Blood: 0</p>
     <div id="navigationMenu">
-        <button onclick="tab('stabFingerMenu')" class="button">Main Menu</button>
-        <button onclick="tab('shopMenu')" class="button">Shop Menu</button>
-        <button onclick="tab('settingsMenu')" class="button">Settings </button>
+        <button onclick="tab('stabFingerMenu')" >Main Menu</button>
+        <button onclick="tab('shopMenu')" >Shop Menu</button>
+        <button onclick="tab('settingsMenu')" >Settings </button>
     </div>
     <div id="stabFingerMenu">
-        <button onclick="stabFinger()" class="button">Stab finger</button>
+        <button onclick="stabFinger()" class="main-btn">Stab finger</button>
     </div>
     <div id="shopMenu">
-        <p id="bloodPerClickUI" class="text">BloodPerClick; 1</p>
-        <p id="bloodPerAutoClickUI" class="text">BloodPerAutoClick; 1</p>
-        <button onclick="buyBloodPerClick()" id="perClickUpgrade" class="button">Upgrade Knife: 10</button>
-        <button onclick="buyBloodPerAutoClick()" id="perClickAutoUpgrade" class="button">Upgrade Altar: 10</button>
+        <p id="bloodPerClickUI">Blood Per Click: 1</p>
+        <p id="bloodPerAutoClickUI">Automatic Generation: 1</p>
+        <button onclick="buyBloodPerClick()" id="perClickUpgrade" >Upgrade Knife: 10</button>
+        <button onclick="buyBloodPerAutoClick()" id="perClickAutoUpgrade" >Upgrade Altar: 10</button>
     </div>
     <div id="settingsMenu">
-        <button onclick="clearData()" style="color: orangered;" class="button">Clear Data!</button>
+        <button onclick="clearData()" class="button-dngr">Clear Data!</button>
     </div>
 </body>
 <script src="main.js" charset="utf-8" type="text/javascript"></script>

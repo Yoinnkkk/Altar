@@ -18,10 +18,10 @@ if (savedGame !== null) {
 }
 
 function updateValues() {
-    document.getElementById("bloodGained").innerHTML = "Blood; " + formatter(gameData.blood)
-    document.getElementById("bloodPerClickUI").innerHTML = "BloodPerClick; " + formatter(gameData.bloodPerClick)
+    document.getElementById("bloodGained").innerHTML = "Blood: " + formatter(gameData.blood)
+    document.getElementById("bloodPerClickUI").innerHTML = "Blood Per Click: " + formatter(gameData.bloodPerClick)
     document.getElementById("perClickUpgrade").innerHTML = "Upgrade Knife: " + formatter(gameData.bloodPerClickCost)
-    document.getElementById("bloodPerAutoClickUI").innerHTML = "BloodPerAutoClick; " + formatter(gameData.bloodPerAutoClick)
+    document.getElementById("bloodPerAutoClickUI").innerHTML = "Automatic Generation: " + formatter(gameData.bloodPerAutoClick)
     document.getElementById("perClickAutoUpgrade").innerHTML = "Upgrade Altar: " + formatter(gameData.bloodPerAutoClickCost)
     diff = Date.now() - gameData.lastTick;
     gameData.lastTick = Date.now()
@@ -61,7 +61,7 @@ function buyBloodPerAutoClick() {
         gameData.blood -= gameData.bloodPerAutoClickCost
         gameData.bloodPerAutoClick += 1
         gameData.bloodPerAutoClickCost *= 2
-        document.getElementById("bloodPerAutoClickUI").innerHTML = "BloodPerAutoClick; " + formatter(gameData.bloodPerAutoClick)
+        document.getElementById("bloodPerAutoClickUI").innerHTML = "Automatic Generation: " + formatter(gameData.bloodPerAutoClick)
         document.getElementById("perClickAutoUpgrade").innerHTML = "Upgrade Altar: " + formatter(gameData.bloodPerAutoClickCost)
     }
 }
