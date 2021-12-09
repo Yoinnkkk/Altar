@@ -15,6 +15,9 @@ var saveGameLoop = window.setInterval(function() {
 var savedGame = JSON.parse(localStorage.getItem("AltarSave"))
 if (savedGame !== null) {
     gameData = savedGame
+    diff = Date.now() - gameData.lastTick;
+    gameData.lastTick = Date.now()
+    gameData.blood += gameData.bloodPerAutoClick * (diff/ 500)
 }
 
 function updateValues() {
@@ -23,11 +26,11 @@ function updateValues() {
     document.getElementById("perClickUpgrade").innerHTML = "Upgrade Knife: " + formatter(gameData.bloodPerClickCost)
     document.getElementById("bloodPerAutoClickUI").innerHTML = "Automatic Generation: " + formatter(gameData.bloodPerAutoClick)
     document.getElementById("perClickAutoUpgrade").innerHTML = "Upgrade Altar: " + formatter(gameData.bloodPerAutoClickCost)
-    diff = Date.now() - gameData.lastTick;
-    gameData.lastTick = Date.now()
-    gameData.blood += gameData.bloodPerAutoClick * (diff/ 500)
 }
-updateValues()
+
+var ValueLoader = window.setInterval({
+    updateValues()
+}, 100)
 
 function formatter(number) {
     let exponent = Math.floor(Math.log10(number))
@@ -36,14 +39,9 @@ function formatter(number) {
     return mantissa.toFixed(2) + "e" + exponent
 }
 
-function stabFinger() {
-    gameData.blood += gameData.bloodPerClick
-    document.getElementById("bloodGained").innerHTML = "Blood; " + formatter(gameData.blood)
-}
-
-function stabFingerAuto() {
-    gameData.blood += gameData.bloodPerAutoClick
-    document.getElementById("bloodGained").innerHTML = "Blood; " + formatter(gameData.blood)
+function stabFinger(type) {
+    if (type == manual) gameData.blood += gameData.bloodPerClick;
+    if (type == automatic) gameData.blood += gameData.bloodPerAutoClick
 }
 
 function buyBloodPerClick() {
@@ -51,8 +49,6 @@ function buyBloodPerClick() {
         gameData.blood -= gameData.bloodPerClickCost
         gameData.bloodPerClick += 1
         gameData.bloodPerClickCost *= 2
-        document.getElementById("bloodPerClickUI").innerHTML = "BloodPerClick; " + formatter(gameData.bloodPerClick)
-        document.getElementById("perClickUpgrade").innerHTML = "Upgrade Knife: " + formatter(gameData.bloodPerClickCost)
     }
 }
 
@@ -61,8 +57,6 @@ function buyBloodPerAutoClick() {
         gameData.blood -= gameData.bloodPerAutoClickCost
         gameData.bloodPerAutoClick += 1
         gameData.bloodPerAutoClickCost *= 2
-        document.getElementById("bloodPerAutoClickUI").innerHTML = "Automatic Generation: " + formatter(gameData.bloodPerAutoClick)
-        document.getElementById("perClickAutoUpgrade").innerHTML = "Upgrade Altar: " + formatter(gameData.bloodPerAutoClickCost)
     }
 }
 
@@ -79,7 +73,7 @@ function clearData() {
 }
 
 var mainGameLoop = window.setInterval(function() {
-    stabFingerAuto()
+    stabFinger(Automatic);
 }, 500)
 
 if (typeof savedGame.blood !== "undefined") gameData.blood = savedGame.blood;
