@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altar</title>
+</head>
+<body style="background-color: rgb(45, 54, 63);">
+    <p id="bloodGained" class="blood">Blood; 0</p>
+    <div id="navigationMenu">
+        <button onclick="tab('stabFingerMenu')" class="button">Main Menu</button>
+        <button onclick="tab('shopMenu')" class="button">Shop Menu</button>
+        <button onclick="tab('settingsMenu')" class="button">Settings </button>
+    </div>
+    <div id="stabFingerMenu">
+        <button onclick="stabFinger()" class="button">Stab finger</button>
+    </div>
+    <div id="shopMenu">
+        <p id="bloodPerClickUI" class="text">BloodPerClick; 1</p>
+        <p id="bloodPerAutoClickUI" class="text">BloodPerAutoClick; 1</p>
+        <button onclick="buyBloodPerClick()" id="perClickUpgrade" class="button">Upgrade Knife: 10</button>
+        <button onclick="buyBloodPerAutoClick()" id="perClickAutoUpgrade" class="button">Upgrade Altar: 10</button>
+    </div>
+    <div id="settingsMenu">
+        <button onclick="clearData()" style="color: orangered;" class="button">Clear Data!</button>
+    </div>
+</body>
+<script src="main.js" charset="utf-8" type="text/javascript"></script>
+</html>
