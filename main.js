@@ -5,7 +5,7 @@ var gameData = {
     bloodPerAutoClickCost: 10,
     bloodPerClickCost: 10,
     lastTick: Date.now(),
-    timer: 15000,
+    timer: document.getElementById("autosave-time").value * 1000,
 }
 
 var saveGameLoop = window.setInterval(function() {
@@ -76,6 +76,10 @@ function clearData() {
     document.getElementById("clearData").innerHTML = "Are you sure?"
 }
 
+function updateSlider() {
+    document.getElementById("autoSaveLabel").innerHTML = document.getElementById("autosave-time").value;
+}
+
 var mainGameLoop = window.setInterval(function() {
     stabFinger('automatic');
 }, 500)
@@ -86,3 +90,4 @@ if (typeof savedGame.bloodPerClick !== "undefined") gameData.bloodPerClick = sav
 if (typeof savedGame.bloodPerAutoClickCost !== "underfined") gameData.bloodPerAutoClickCost = savedGame.bloodPerAutoClickCost;
 if (typeof savedGame.buyBloodPerClick !== "undefined") gameData.buyBloodPerClick = savedGame.buyBloodPerClick;
 if (typeof savedGame.lastTick !== "undefined") gameData.lastTick = savedGame.lastTick;
+if (typeof savedGame.timer !== "undefined") gameData.timer = savedGame.timer;

@@ -27,8 +27,8 @@
     </div>
     <div id="settingsMenu">
         <button onclick="clearData()" class="button-dngr" id="clearData">Clear Data!</button>
-        <label for="autosave-time">Autosave Time</label>
-        <input type="range" min="1" max="15" value="5" id="autosave-time">
+        <label id="autoSaveLabel" for="autosave-time">Autosave Time: 5</label>
+        <input oninput="updateSlider()" type="range" min="1" max="15" value="5" id="autosave-time">
     </div>
 </body>
 <script src="main.js" charset="utf-8" type="text/javascript"></script>
