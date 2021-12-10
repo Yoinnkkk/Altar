@@ -47,16 +47,16 @@ function stabFinger(type) {
 function buyBloodPerClick() {
     if (gameData.blood >= gameData.bloodPerClickCost) {
         gameData.blood -= gameData.bloodPerClickCost
-        gameData.bloodPerClick += 1
-        gameData.bloodPerClickCost *= 1.25
+        gameData.bloodPerClick += 0.5
+        gameData.bloodPerClickCost *= 1.5
     }
 }
 
 function buyBloodPerAutoClick() {
     if (gameData.blood >= gameData.bloodPerAutoClickCost) {
         gameData.blood -= gameData.bloodPerAutoClickCost
-        gameData.bloodPerAutoClick += 1
-        gameData.bloodPerAutoClickCost *= 1.25
+        gameData.bloodPerAutoClick += 0.5
+        gameData.bloodPerAutoClickCost *= 1.5
     }
 }
 
