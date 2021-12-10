@@ -3,8 +3,9 @@ Upgrades template
             name: "a",
             price: 10,
             upgrade: 2,
-            description: "a"
-            id: ""
+            description: "a",
+            id: "",
+            bought: false
 */
 var gameData = {
     blood: 0,
@@ -14,21 +15,24 @@ var gameData = {
     bloodPerClickCost: 10,
     lastTick: Date.now(),
     timer: 5000,
+    totalUpgrade: 1,
+    totalAutoUpgrade: 1,
     upgrades: {
-        totalupgrade: 1,
         upgradeKnife: {
             name: "Upgrade Knife",
             price: 300,
             upgrade: 2,
             description: "Change out that rusty knife, you might get tetanus...",
-            id: "upgradeKnife"
+            id: "upgradeKnife",
+            bought: false,
         },
         sturdierSkin: {
             name: "Sturdier Skin",
             price: 500,
             upgrade: 2,
             description: "I guess your skin just got sturdier from all that poking!",
-            id: "sturdierSkin"
+            id: "sturdierSkin",
+            bought: false,
         }
     },   
 }
@@ -48,10 +52,15 @@ if (savedGame !== null) {
 
 function updateValues() {
     document.getElementById("bloodGained").innerHTML = "Blood: " + formatter(gameData.blood)
-    document.getElementById("bloodPerClickUI").innerHTML = "Blood Per Click: " + formatter(gameData.bloodPerClick)
+    document.getElementById("bloodPerClickUI").innerHTML = "Blood Per Click: " + formatter(gameData.bloodPerClick * gameData.totalUpgrade)
     document.getElementById("perClickUpgrade").innerHTML = "Upgrade Pin: " + formatter(gameData.bloodPerClickCost)
-    document.getElementById("bloodPerAutoClickUI").innerHTML = "Automatic Generation: " + formatter(gameData.bloodPerAutoClick)
+    document.getElementById("bloodPerAutoClickUI").innerHTML = "Automatic Generation: " + formatter(gameData.bloodPerAutoClick * gameData.totalAutoUpgrade)
     document.getElementById("perClickAutoUpgrade").innerHTML = "Upgrade Altar: " + formatter(gameData.bloodPerAutoClickCost)
+    if (document.getElementById('researchBar').children.length == 0) {
+        document.getElementById('researchBar').style.display = "none"
+        } else {
+            document.getElementById('researchBar').style.display = "block" 
+        }
 }
 
 var ValueLoader = window.setInterval( function() { 
@@ -67,8 +76,8 @@ function formatter(number) {
 }
 
 function stabFinger(type) {
-    if (type == 'manual') {gameData.blood += gameData.bloodPerClick};
-    if (type == 'automatic') {gameData.blood += gameData.bloodPerAutoClick};
+    if (type == 'manual') {gameData.blood += gameData.bloodPerClick * gameData.totalUpgrade};
+    if (type == 'automatic') {gameData.blood += gameData.bloodPerAutoClick * gameData.totalUpgrade};
 }
 
 function buyBloodPerClick(type) {
@@ -121,12 +130,24 @@ var mainGameLoop = window.setInterval(function() {
 
 function upgradeButton() {
     var upgrades = gameData.upgrades
-    if (gameData.blood > upgrades.upgradeKnife.price / 2 && document.getElementById(upgrades.upgradeKnife.id) == null) {
+    if (gameData.blood >= upgrades.upgradeKnife.price / 2 && document.getElementById(upgrades.upgradeKnife.id) == null && upgrades.upgradeKnife.bought == false) {
         var button = document.createElement('button');
         document.getElementById('researchBar').appendChild(button);
         button.id = upgrades.upgradeKnife.id
         button.innerHTML = upgrades.upgradeKnife.name + "<br>" + upgrades.upgradeKnife.description + "<br>" + upgrades.upgradeKnife.price
+        button.addEventListener('click', function(){buyResearch('upgradeKnife', upgrades.upgradeKnife.id);})
     }
+}
+
+function buyResearch(type, id) {
+    var upgrade = gameData.upgrades[type]
+    if (gameData.blood >= upgrade.price) {
+        gameData.blood -= upgrade.price
+        gameData.totalUpgrade *= upgrade.upgrade
+        upgrade.bought = true
+        document.getElementById('researchBar').removeChild(document.getElementById(id))
+    }
+
 }
 
 
