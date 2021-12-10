@@ -67,6 +67,7 @@ function tab(tab) {
     document.getElementById("stabFingerMenu").style.display = "none";
     document.getElementById("shopMenu").style.display = "none";
     document.getElementById("settingsMenu").style.display = "none";
+    document.getElementById("clearData").innerHTML = "Clear Data!";
     document.getElementById(tab).style.display = "flex";
 }
 tab("stabFingerMenu");
