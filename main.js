@@ -5,7 +5,7 @@ var gameData = {
     bloodPerAutoClickCost: 10,
     bloodPerClickCost: 10,
     lastTick: Date.now(),
-    timer: document.getElementById("autosave-time").value * 1000,
+    timer: 5000,
 }
 
 var saveGameLoop = window.setInterval(function() {
@@ -78,6 +78,7 @@ function clearData() {
 
 function updateSlider() {
     document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + document.getElementById("autosave-time").value;
+    gameData.timer = document.getElementById("autosave-time").value * 1000
 }
 
 var mainGameLoop = window.setInterval(function() {
