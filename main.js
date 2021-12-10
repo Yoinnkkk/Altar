@@ -48,7 +48,7 @@ function buyBloodPerClick() {
     if (gameData.blood >= gameData.bloodPerClickCost) {
         gameData.blood -= gameData.bloodPerClickCost
         gameData.bloodPerClick += 1
-        gameData.bloodPerClickCost *= 2
+        gameData.bloodPerClickCost *= 1.25
     }
 }
 
@@ -56,7 +56,7 @@ function buyBloodPerAutoClick() {
     if (gameData.blood >= gameData.bloodPerAutoClickCost) {
         gameData.blood -= gameData.bloodPerAutoClickCost
         gameData.bloodPerAutoClick += 1
-        gameData.bloodPerAutoClickCost *= 2
+        gameData.bloodPerAutoClickCost *= 1.25
     }
 }
 
