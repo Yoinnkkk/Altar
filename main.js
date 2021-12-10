@@ -69,8 +69,11 @@ function tab(tab) {
 tab("stabFingerMenu");
 
 function clearData() {
+    if (document.getElementById("clearData").innerHTML == "Are you sure?") {
     localStorage.removeItem("AltarSave")
     location.reload(true);
+    };
+    document.getElementById("clearData").innerHTML = "Are you sure?"
 }
 
 var mainGameLoop = window.setInterval(function() {
