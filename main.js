@@ -18,7 +18,7 @@ if (savedGame !== null) {
     diff = Date.now() - gameData.lastTick;
     gameData.lastTick = Date.now()
     gameData.blood += gameData.bloodPerAutoClick * (diff/ 500)
-    document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + savedGame.timer
+    document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + savedGame.timer / 1000
 }
 
 function updateValues() {
