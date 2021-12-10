@@ -64,6 +64,7 @@ button:hover {
     width: 15em;   
 }
 
+
 .button-dngr {
     color: red;
     font-weight: bolder;
@@ -162,6 +163,7 @@ button:hover {
     border-width: thin;
     position: absolute;
     left: 0;
+    top: 0;
   }
 
   div.content {
