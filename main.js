@@ -23,7 +23,7 @@ if (savedGame !== null) {
 function updateValues() {
     document.getElementById("bloodGained").innerHTML = "Blood: " + formatter(gameData.blood)
     document.getElementById("bloodPerClickUI").innerHTML = "Blood Per Click: " + formatter(gameData.bloodPerClick)
-    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Knife: " + formatter(gameData.bloodPerClickCost)
+    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Pin: " + formatter(gameData.bloodPerClickCost)
     document.getElementById("bloodPerAutoClickUI").innerHTML = "Automatic Generation: " + formatter(gameData.bloodPerAutoClick)
     document.getElementById("perClickAutoUpgrade").innerHTML = "Upgrade Altar: " + formatter(gameData.bloodPerAutoClickCost)
 }
