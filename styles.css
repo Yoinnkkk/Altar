@@ -15,6 +15,10 @@ html {
 
 p {
     color: white;
+    text-align: center;
+    position: relative;
+    padding-top: none;
+    top: -31px;
 }
 
 body {
@@ -76,6 +80,10 @@ button:hover {
     color: white;
 }
 
+#navigationMenu {
+    position: relative;
+    top: -30px;
+}
 #stabFingerMenu {
     position: absolute;
     width: 35%;
@@ -186,3 +194,8 @@ div.content {
     animation-duration: 2s;
 }
   
+#bloodDrop {
+    position: relative;
+    right: 60px;
+    top: 14px;
+}
