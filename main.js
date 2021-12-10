@@ -1,3 +1,11 @@
+/*
+Upgrades template
+            name: "a",
+            price: 10,
+            upgrade: 2,
+            description: "a"
+            id: ""
+*/
 var gameData = {
     blood: 0,
     bloodPerClick: 1,
@@ -6,6 +14,23 @@ var gameData = {
     bloodPerClickCost: 10,
     lastTick: Date.now(),
     timer: 5000,
+    upgrades: {
+        totalupgrade: 1,
+        upgradeKnife: {
+            name: "Upgrade Knife",
+            price: 300,
+            upgrade: 2,
+            description: "Change out that rusty knife, you might get tetanus...",
+            id: "upgradeKnife"
+        },
+        sturdierSkin: {
+            name: "Sturdier Skin",
+            price: 500,
+            upgrade: 2,
+            description: "I guess your skin just got sturdier from all that poking!",
+            id: "sturdierSkin"
+        }
+    },   
 }
 
 var saveGameLoop = window.setInterval(function() {
@@ -30,7 +55,8 @@ function updateValues() {
 }
 
 var ValueLoader = window.setInterval( function() { 
-    updateValues() 
+    updateValues()
+    upgradeButton()
 }, 100)
 
 function formatter(number) {
@@ -80,6 +106,10 @@ function clearData() {
     document.getElementById("clearData").innerHTML = "Are you sure?"
 }
 
+function saveData() {
+    localStorage.setItem("AltarSave", JSON.stringify(gameData))
+}
+
 function updateSlider() {
     document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + document.getElementById("autosave-time").value;
     gameData.timer = document.getElementById("autosave-time").value * 1000
@@ -89,6 +119,18 @@ var mainGameLoop = window.setInterval(function() {
     stabFinger('automatic');
 }, 500)
 
+function upgradeButton() {
+    var upgrades = gameData.upgrades
+    if (gameData.blood > upgrades.upgradeKnife.price / 2 && document.getElementById(upgrades.upgradeKnife.id) == null) {
+        var button = document.createElement('button');
+        document.getElementById('researchBar').appendChild(button);
+        button.id = upgrades.upgradeKnife.id
+        button.innerHTML = upgrades.upgradeKnife.name + "<br>" + upgrades.upgradeKnife.description + "<br>" + upgrades.upgradeKnife.price
+    }
+}
+
+
+
 if (typeof savedGame.blood !== "undefined") gameData.blood = savedGame.blood;
 if (typeof savedGame.bloodPerAutoClick !== "undefined") gameData.bloodPerAutoClick = savedGame.bloodPerAutoClick;
 if (typeof savedGame.bloodPerClick !== "undefined") gameData.bloodPerClick = savedGame.bloodPerClick;
@@ -96,3 +138,4 @@ if (typeof savedGame.bloodPerAutoClickCost !== "underfined") gameData.bloodPerAu
 if (typeof savedGame.buyBloodPerClick !== "undefined") gameData.buyBloodPerClick = savedGame.buyBloodPerClick;
 if (typeof savedGame.lastTick !== "undefined") gameData.lastTick = savedGame.lastTick;
 if (typeof savedGame.timer !== "undefined") gameData.timer = savedGame.timer;
+if (typeof savedGame.upgrades !== "undefined") gameData.upgrades = savedGame.upgrades;
