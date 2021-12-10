@@ -103,6 +103,8 @@ function tab(tab) {
     document.getElementById("shopMenu").style.display = "none";
     document.getElementById("settingsMenu").style.display = "none";
     document.getElementById("clearData").innerHTML = "Clear Data!";
+    document.getElementById("saveData").innerHTML = "Save Data";
+    document.getElementById("saveData").style.backgroundColor = "";
     document.getElementById(tab).style.display = "flex";
 }
 tab("stabFingerMenu");
@@ -117,6 +119,9 @@ function clearData() {
 
 function saveData() {
     localStorage.setItem("AltarSave", JSON.stringify(gameData))
+    document.getElementById('saveData').innerHTML = "Saved!"
+    document.getElementById('saveData').style.backgroundColor = "green"
+    
 }
 
 function updateSlider() {
