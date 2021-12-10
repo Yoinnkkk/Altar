@@ -45,20 +45,22 @@ function stabFinger(type) {
     if (type == 'automatic') {gameData.blood += gameData.bloodPerAutoClick};
 }
 
-function buyBloodPerClick() {
-    if (gameData.blood >= gameData.bloodPerClickCost) {
-        gameData.blood -= gameData.bloodPerClickCost
-        gameData.bloodPerClick += 0.5
-        gameData.bloodPerClickCost *= 1.5
+function buyBloodPerClick(type) {
+    if (type == 'manual') {
+        if (gameData.blood >= gameData.bloodPerClickCost) {
+            gameData.blood -= gameData.bloodPerClickCost
+            gameData.bloodPerClick += 0.5
+            gameData.bloodPerClickCost *= 1.5
+        }
     }
-}
-
-function buyBloodPerAutoClick() {
-    if (gameData.blood >= gameData.bloodPerAutoClickCost) {
-        gameData.blood -= gameData.bloodPerAutoClickCost
-        gameData.bloodPerAutoClick += 0.5
-        gameData.bloodPerAutoClickCost *= 1.5
+    if (type == 'automatic') {
+        if (gameData.blood >= gameData.bloodPerAutoClickCost) {
+            gameData.blood -= gameData.bloodPerAutoClickCost
+            gameData.bloodPerAutoClick += 0.5
+            gameData.bloodPerAutoClickCost *= 1.5
+        }
     }
+    
 }
 
 function tab(tab) {
