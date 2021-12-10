@@ -151,7 +151,7 @@ button:hover {
     cursor: pointer; /* Cursor on hover */
   }
 
-  #researchMenu {
+  #researchBar {
     margin: 0;
     padding: 0;
     width: 200px;
@@ -160,3 +160,17 @@ button:hover {
     height: 100%;
     overflow: auto;
   }
+
+  div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+  }
+
+  .sidebar button {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+  
