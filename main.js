@@ -77,7 +77,7 @@ function clearData() {
 }
 
 function updateSlider() {
-    document.getElementById("autoSaveLabel").innerHTML = document.getElementById("autosave-time").value;
+    document.getElementById("autoSaveLabel").innerHTML = "AutoSave timer: " + document.getElementById("autosave-time").value;
 }
 
 var mainGameLoop = window.setInterval(function() {
