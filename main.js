@@ -252,7 +252,14 @@ function buyResearch(type, id, ) {
     var upgradeType = upgrade.upgradeType
     if (gameData.blood >= upgrade.price) {
         gameData.blood -= upgrade.price
-        if (upgradeType == "manual") {gameData.totalUpgrade *= upgrade.upgrade} else if (upgradeType == "automatic") {gameData.totalAutoUpgrade *= upgrade.upgrade} else if (upgradeType == "total") {gameData.totalUpgrade *= upgrade.upgrade; gameData.totalUpgrade *= upgrade.upgrade;}
+        if (upgradeType == "manual") {
+            gameData.totalUpgrade *= upgrade.upgrade
+        } else if (upgradeType == "automatic") {
+            gameData.totalAutoUpgrade *= upgrade.upgrade
+        } else if (upgradeType == "total") {
+            gameData.totalUpgrade *= upgrade.upgrade;
+            gameData.totalAutoUpgrade *= upgrade.upgrade;
+        }
         upgrade.bought = true
         document.getElementById('researchBar').removeChild(document.getElementById(id))
     }
