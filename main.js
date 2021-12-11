@@ -144,6 +144,7 @@ function upgradeButton() {
         button.addEventListener('click', function(){buyResearch(upgrades.something.name, upgrades.something.id);})
     }
     */
+    var upgrades = gameData.upgrades
     var blood = gameData.blood
     if (blood >= upgrades.upgradeKnife.price / 2 && document.getElementById(upgrades.upgradeKnife.id) == null && upgrades.upgradeKnife.bought == false) {
         var button = document.createElement('button');
