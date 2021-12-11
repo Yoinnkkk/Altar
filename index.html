@@ -42,22 +42,4 @@
 
 </body>
 <script src="main.js" charset="utf-8" type="text/javascript"></script>
-<script type="'text/javascript'">
-    (function(){
-     
-      var _z = console;
-      Object.defineProperty( window, "console", {
-            get : function(){
-                if( _z._commandLineAPI ){
-                throw "Sorry, Can't execute scripts!";
-                      }
-                return _z; 
-            },
-            set : function(val){
-                _z = val;
-            }
-      });
-     
-    })();
-    </script>
 </html>
