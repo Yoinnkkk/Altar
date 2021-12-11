@@ -248,7 +248,6 @@ function upgradeButton() {
 }
 
 function buyResearch(type, id, ) {
-    console.log(type)
     var upgrade = gameData.upgrades[type]
     var upgradeType = upgrade.upgradeType
     if (gameData.blood >= upgrade.price) {
