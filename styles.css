@@ -70,10 +70,6 @@ button:hover {
     justify-items: flex-start;
 }
 
-#shopMenu p {
-    position
-}
-
 #shopMenu #button-div {
     display: flex;
     flex-direction: row;
