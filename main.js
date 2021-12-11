@@ -1,11 +1,14 @@
 /*
 Upgrades template
-            name: "a",
-            price: 10,
-            upgrade: 2,
-            description: "a",
-            id: "",
-            bought: false
+        templateName: {
+            name: "Template Name",
+            price: integer,
+            upgrade: integer,
+            description: "unus ex nobis",
+            id: "templateName",
+            bought: false,
+            upgradeType: "manual, automatic, total",
+        }
 */
 var gameData = {
     blood: 0,
@@ -25,6 +28,7 @@ var gameData = {
             description: "Change out that rusty knife, you might get tetanus...",
             id: "upgradeKnife",
             bought: false,
+            upgradeType: "manual",
         },
         sturdierSkin: {
             name: "Sturdier Skin",
@@ -33,6 +37,7 @@ var gameData = {
             description: "I guess your skin just got sturdier from all that poking!",
             id: "sturdierSkin",
             bought: false,
+            upgradeType: "manual",
         }
     },   
 }
@@ -164,13 +169,13 @@ function upgradeButton() {
 
 function buyResearch(type, id) {
     var upgrade = gameData.upgrades[type]
+    var upgradeType = upgrade.upgradeType
     if (gameData.blood >= upgrade.price) {
         gameData.blood -= upgrade.price
-        gameData.totalUpgrade *= upgrade.upgrade
+        if (upgradeType == "manual") {gameData.totalUpgrade *= upgrade.upgrade} else if (upgradeType == "automatic") {gameData.totalAutoUpgrade *= upgrade.upgrade} else if (upgradeType == "total") {gameData.totalUpgrade *= upgrade.upgrade; gameData.totalUpgrade *= upgrade.upgrade;}
         upgrade.bought = true
         document.getElementById('researchBar').removeChild(document.getElementById(id))
     }
-
 }
 
 
