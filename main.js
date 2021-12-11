@@ -39,21 +39,30 @@ var gameData = {
             bought: false,
             upgradeType: "manual",
         },
-        bloodThinner: {
-            name: "Blood Thinners",
-            price: 1000,
-            upgrade: 1.5,
-            description: "Those new pills you bought really work a charm huh...",
-            id: "bloodThinner",
-            bought: false,
-            upgradeType: "manual",
-        },
         qualityBricks: {
             name: "Higher Quality Bricks",
             price: 1000,
             upgrade: 1.5,
             description: "Buy higher quality bricks for your altar.",
             id: "qualityBricks",
+            bought: false,
+            upgradeType: "total",
+        },
+        bloodThinner: {
+            name: "Blood Thinners",
+            price: 3000,
+            upgrade: 1.5,
+            description: "Those new pills you bought really work a charm huh...",
+            id: "bloodThinner",
+            bought: false,
+            upgradeType: "manual",
+        },
+        smootherFinish: {
+            name: "Polish the altar",
+            price: 3500,
+            upgrade: 2,
+            description: "The altar is filled with cracks and grooves, maybe you should polish it...",
+            id: "smootherFinish",
             bought: false,
             upgradeType: "total",
         },
@@ -75,14 +84,23 @@ var gameData = {
             bought: false,
             upgradeType: "manual",
         },
-        smootherFinish: {
-            name: "Polish the altar",
-            price: 3500,
+        reworkedMechanics: {
+            name: "Rebuild the automatic machine",
+            price: 13250,
             upgrade: 2,
-            description: "The altar is filled with cracks and grooves, maybe you should polish it...",
-            id: "smootherFinish",
+            description: "Should it really be making those noises?",
+            id: "reworkedMechanics",
             bought: false,
-            upgradeType: "total",
+            upgradeType: "automatic",
+        },
+        overdose: {
+            name: "Maybe a little too much",
+            price: 30000,
+            upgrade: 2,
+            description: "What if you took multiple of those pills you bought earlier... just maybe...",
+            id: "overdose",
+            bought: false,
+            upgradeType: "manual",
         },
     },   
 }
@@ -97,7 +115,7 @@ if (savedGame !== null) {
     diff = Date.now() - gameData.lastTick;
     gameData.lastTick = Date.now()
     gameData.blood += gameData.bloodPerAutoClick * (diff/ 500)
-    document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + savedGame.timer / 1000
+    document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + savedGame.timer / 1000 + " Minute(s)"
 }
 
 function updateValues() {
@@ -175,7 +193,7 @@ function saveData() {
 }
 
 function updateSlider() {
-    document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + document.getElementById("autosave-time").value;
+    document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + document.getElementById("autosave-time").value + " Minute(s)";
     gameData.timer = document.getElementById("autosave-time").value * 1000
 }
 
@@ -210,13 +228,6 @@ function upgradeButton() {
         button.innerHTML = upgrades.sturdierSkin.name + "<br>" + upgrades.sturdierSkin.description + "<br>" + upgrades.sturdierSkin.price
         button.addEventListener('click', function(){buyResearch(upgrades.sturdierSkin.id, upgrades.sturdierSkin.id);})
     }
-    if (blood >= upgrades.oiledGears.price / 2 && document.getElementById(upgrades.oiledGears.id) == null && upgrades.oiledGears.bought == false) {
-        var button = document.createElement('button');
-        document.getElementById('researchBar').appendChild(button);
-        button.id = upgrades.oiledGears.id
-        button.innerHTML = upgrades.oiledGears.name + "<br>" + upgrades.oiledGears.description + "<br>" + upgrades.oiledGears.price
-        button.addEventListener('click', function(){buyResearch(upgrades.oiledGears.id, upgrades.oiledGears.id);})
-    }
     if (blood >= upgrades.qualityBricks.price / 2 && document.getElementById(upgrades.qualityBricks.id) == null && upgrades.qualityBricks.bought == false) {
         var button = document.createElement('button');
         document.getElementById('researchBar').appendChild(button);
@@ -231,6 +242,20 @@ function upgradeButton() {
         button.innerHTML = upgrades.bloodThinner.name + "<br>" + upgrades.bloodThinner.description + "<br>" + upgrades.bloodThinner.price
         button.addEventListener('click', function(){buyResearch(upgrades.bloodThinner.id, upgrades.bloodThinner.id);})
     }
+    if (blood >= upgrades.smootherFinish.price / 2 && document.getElementById(upgrades.smootherFinish.id) == null && upgrades.smootherFinish.bought == false) {
+        var button = document.createElement('button');
+        document.getElementById('researchBar').appendChild(button);
+        button.id = upgrades.smootherFinish.id
+        button.innerHTML = upgrades.smootherFinish.name + "<br>" + upgrades.smootherFinish.description + "<br>" + upgrades.smootherFinish.price
+        button.addEventListener('click', function(){buyResearch(upgrades.smootherFinish.id, upgrades.smootherFinish.id);})
+    }
+    if (blood >= upgrades.oiledGears.price / 2 && document.getElementById(upgrades.oiledGears.id) == null && upgrades.oiledGears.bought == false) {
+        var button = document.createElement('button');
+        document.getElementById('researchBar').appendChild(button);
+        button.id = upgrades.oiledGears.id
+        button.innerHTML = upgrades.oiledGears.name + "<br>" + upgrades.oiledGears.description + "<br>" + upgrades.oiledGears.price
+        button.addEventListener('click', function(){buyResearch(upgrades.oiledGears.id, upgrades.oiledGears.id);})
+    }
     if (blood >= upgrades.bloodTransfusion.price / 2 && document.getElementById(upgrades.bloodTransfusion.id) == null && upgrades.bloodTransfusion.bought == false) {
         var button = document.createElement('button');
         document.getElementById('researchBar').appendChild(button);
@@ -238,12 +263,19 @@ function upgradeButton() {
         button.innerHTML = upgrades.bloodTransfusion.name + "<br>" + upgrades.bloodTransfusion.description + "<br>" + upgrades.bloodTransfusion.price
         button.addEventListener('click', function(){buyResearch(upgrades.bloodTransfusion.id, upgrades.bloodTransfusion.id);})
     }
-    if (blood >= upgrades.smootherFinish.price / 2 && document.getElementById(upgrades.smootherFinish.id) == null && upgrades.smootherFinish.bought == false) {
+    if (blood >= upgrades.reworkedMechanics.price / 2 && document.getElementById(upgrades.reworkedMechanics.id) == null && upgrades.reworkedMechanics.bought == false) {
         var button = document.createElement('button');
         document.getElementById('researchBar').appendChild(button);
-        button.id = upgrades.smootherFinish.id
-        button.innerHTML = upgrades.smootherFinish.name + "<br>" + upgrades.smootherFinish.description + "<br>" + upgrades.smootherFinish.price
-        button.addEventListener('click', function(){buyResearch(upgrades.smootherFinish.id, upgrades.smootherFinish.id);})
+        button.id = upgrades.reworkedMechanics.id
+        button.innerHTML = upgrades.reworkedMechanics.name + "<br>" + upgrades.reworkedMechanics.description + "<br>" + upgrades.reworkedMechanics.price
+        button.addEventListener('click', function(){buyResearch(upgrades.reworkedMechanics.id, upgrades.reworkedMechanics.id);})
+    }
+    if (blood >= upgrades.overdose.price / 2 && document.getElementById(upgrades.overdose.id) == null && upgrades.overdose.bought == false) {
+        var button = document.createElement('button');
+        document.getElementById('researchBar').appendChild(button);
+        button.id = upgrades.overdose.id
+        button.innerHTML = upgrades.overdose.name + "<br>" + upgrades.overdose.description + "<br>" + upgrades.overdose.price
+        button.addEventListener('click', function(){buyResearch(upgrades.overdose.id, upgrades.overdose.id);})
     }
 }
 

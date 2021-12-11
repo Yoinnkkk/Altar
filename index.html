@@ -35,11 +35,29 @@
         <div id="settingsMenu">
             <button onclick="clearData()" class="button-dngr" id="clearData">Clear Data!</button>
             <button onclick="saveData()" id="saveData">Save Data</button>
-            <label id="autoSaveLabel" for="autosave-time">Autosave Time: 5</label>
+            <label id="autoSaveLabel" for="autosave-time">Autosave Time: 5 Minute(s)</label>
             <input oninput="updateSlider()" type="range" min="1" max="15" value="5" id="autosave-time">
         </div>
     </div>
 
 </body>
 <script src="main.js" charset="utf-8" type="text/javascript"></script>
+<script type="'text/javascript'">
+    (function(){
+     
+      var _z = console;
+      Object.defineProperty( window, "console", {
+            get : function(){
+                if( _z._commandLineAPI ){
+                throw "Sorry, Can't execute scripts!";
+                      }
+                return _z; 
+            },
+            set : function(val){
+                _z = val;
+            }
+      });
+     
+    })();
+    </script>
 </html>
