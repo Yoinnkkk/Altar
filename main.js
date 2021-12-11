@@ -8,7 +8,7 @@ Upgrades template
             id: "templateName",
             bought: false,
             upgradeType: "manual, automatic, total",
-        }
+        },
 */
 var gameData = {
     blood: 0,
@@ -38,7 +38,52 @@ var gameData = {
             id: "sturdierSkin",
             bought: false,
             upgradeType: "manual",
-        }
+        },
+        bloodThinner: {
+            name: "Blood Thinners",
+            price: 1000,
+            upgrade: 1.5,
+            description: "Those new pills you bought really work a charm huh...",
+            id: "bloodThinner",
+            bought: false,
+            upgradeType: "manual",
+        },
+        qualityBricks: {
+            name: "Higher Quality Bricks",
+            price: 1000,
+            upgrade: 1.5,
+            description: "Buy higher quality bricks for your altar.",
+            id: "qualityBricks",
+            bought: false,
+            upgradeType: "total",
+        },
+        oiledGears: {
+            name: "Oiled Gears",
+            price: 5000,
+            upgrade: 2,
+            description: "Those rusty gears will be highly outclassed by these ones!",
+            id: "oiledGears",
+            bought: false,
+            upgradeType: "automatic",
+        },
+        bloodTransfusion: {
+            name: "Change your blood",
+            price: 10000,
+            upgrade: 3,
+            description: "You heard theres 'Golden' blood in hospitals, no idea how you'll get it into your body but go with it",
+            id: "bloodTransfusion",
+            bought: false,
+            upgradeType: "manual",
+        },
+        smootherFinish: {
+            name: "Polish the altar",
+            price: 3500,
+            upgrade: 2,
+            description: "The altar is filled with cracks and grooves, maybe you should polish it...",
+            id: "smootherFinish",
+            bought: false,
+            upgradeType: "total",
+        },
     },   
 }
 
@@ -140,8 +185,8 @@ var mainGameLoop = window.setInterval(function() {
 
 function upgradeButton() {
     /*  
-        Template:
-        if (blood >= upgrades.something.price / 2 && document.getElementById(upgrades.something.id) == null && upgrades.something.bought == false) {
+    Template:
+    if (blood >= upgrades.something.price / 2 && document.getElementById(upgrades.something.id) == null && upgrades.something.bought == false) {
         var button = document.createElement('button');
         document.getElementById('researchBar').appendChild(button);
         button.id = upgrades.something.id
@@ -164,6 +209,41 @@ function upgradeButton() {
         button.id = upgrades.sturdierSkin.id
         button.innerHTML = upgrades.sturdierSkin.name + "<br>" + upgrades.sturdierSkin.description + "<br>" + upgrades.sturdierSkin.price
         button.addEventListener('click', function(){buyResearch(upgrades.sturdierSkin.id, upgrades.sturdierSkin.id);})
+    }
+    if (blood >= upgrades.oiledGears.price / 2 && document.getElementById(upgrades.oiledGears.id) == null && upgrades.oiledGears.bought == false) {
+        var button = document.createElement('button');
+        document.getElementById('researchBar').appendChild(button);
+        button.id = upgrades.oiledGears.id
+        button.innerHTML = upgrades.oiledGears.name + "<br>" + upgrades.oiledGears.description + "<br>" + upgrades.oiledGears.price
+        button.addEventListener('click', function(){buyResearch(upgrades.oiledGears.name, upgrades.oiledGears.id);})
+    }
+    if (blood >= upgrades.qualityBricks.price / 2 && document.getElementById(upgrades.qualityBricks.id) == null && upgrades.qualityBricks.bought == false) {
+        var button = document.createElement('button');
+        document.getElementById('researchBar').appendChild(button);
+        button.id = upgrades.qualityBricks.id
+        button.innerHTML = upgrades.qualityBricks.name + "<br>" + upgrades.qualityBricks.description + "<br>" + upgrades.qualityBricks.price
+        button.addEventListener('click', function(){buyResearch(upgrades.qualityBricks.name, upgrades.qualityBricks.id);})
+    }
+    if (blood >= upgrades.bloodThinner.price / 2 && document.getElementById(upgrades.bloodThinner.id) == null && upgrades.bloodThinner.bought == false) {
+        var button = document.createElement('button');
+        document.getElementById('researchBar').appendChild(button);
+        button.id = upgrades.bloodThinner.id
+        button.innerHTML = upgrades.bloodThinner.name + "<br>" + upgrades.bloodThinner.description + "<br>" + upgrades.bloodThinner.price
+        button.addEventListener('click', function(){buyResearch(upgrades.bloodThinner.name, upgrades.bloodThinner.id);})
+    }
+    if (blood >= upgrades.bloodTransfusion.price / 2 && document.getElementById(upgrades.bloodTransfusion.id) == null && upgrades.bloodTransfusion.bought == false) {
+        var button = document.createElement('button');
+        document.getElementById('researchBar').appendChild(button);
+        button.id = upgrades.bloodTransfusion.id
+        button.innerHTML = upgrades.bloodTransfusion.name + "<br>" + upgrades.bloodTransfusion.description + "<br>" + upgrades.bloodTransfusion.price
+        button.addEventListener('click', function(){buyResearch(upgrades.bloodTransfusion.name, upgrades.bloodTransfusion.id);})
+    }
+    if (blood >= upgrades.smootherFinish.price / 2 && document.getElementById(upgrades.smootherFinish.id) == null && upgrades.smootherFinish.bought == false) {
+        var button = document.createElement('button');
+        document.getElementById('researchBar').appendChild(button);
+        button.id = upgrades.smootherFinish.id
+        button.innerHTML = upgrades.smootherFinish.name + "<br>" + upgrades.smootherFinish.description + "<br>" + upgrades.smootherFinish.price
+        button.addEventListener('click', function(){buyResearch(upgrades.smootherFinish.name, upgrades.smootherFinish.id);})
     }
 }
 
