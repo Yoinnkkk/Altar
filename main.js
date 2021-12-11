@@ -134,13 +134,30 @@ var mainGameLoop = window.setInterval(function() {
 }, 500)
 
 function upgradeButton() {
-    var upgrades = gameData.upgrades
-    if (gameData.blood >= upgrades.upgradeKnife.price / 2 && document.getElementById(upgrades.upgradeKnife.id) == null && upgrades.upgradeKnife.bought == false) {
+    /*  
+        Template:
+        if (blood >= upgrades.something.price / 2 && document.getElementById(upgrades.something.id) == null && upgrades.something.bought == false) {
+        var button = document.createElement('button');
+        document.getElementById('researchBar').appendChild(button);
+        button.id = upgrades.something.id
+        button.innerHTML = upgrades.something.name + "<br>" + upgrades.something.description + "<br>" + upgrades.something.price
+        button.addEventListener('click', function(){buyResearch(upgrades.something.name, upgrades.something.id);})
+    }
+    */
+    var blood = gameData.blood
+    if (blood >= upgrades.upgradeKnife.price / 2 && document.getElementById(upgrades.upgradeKnife.id) == null && upgrades.upgradeKnife.bought == false) {
         var button = document.createElement('button');
         document.getElementById('researchBar').appendChild(button);
         button.id = upgrades.upgradeKnife.id
         button.innerHTML = upgrades.upgradeKnife.name + "<br>" + upgrades.upgradeKnife.description + "<br>" + upgrades.upgradeKnife.price
-        button.addEventListener('click', function(){buyResearch('upgradeKnife', upgrades.upgradeKnife.id);})
+        button.addEventListener('click', function(){buyResearch(upgrades.upgradeKnife.name, upgrades.upgradeKnife.id);})
+    }
+    if (blood >= upgrades.sturdierSkin.price / 2 && document.getElementById(upgrades.sturdierSkin.id) == null && upgrades.sturdierSkin.bought == false) {
+        var button = document.createElement('button');
+        document.getElementById('researchBar').appendChild(button);
+        button.id = upgrades.sturdierSkin.id
+        button.innerHTML = upgrades.sturdierSkin.name + "<br>" + upgrades.sturdierSkin.description + "<br>" + upgrades.sturdierSkin.price
+        button.addEventListener('click', function(){buyResearch(upgrades.sturdierSkin.name, upgrades.sturdierSkin.id);})
     }
 }
 
