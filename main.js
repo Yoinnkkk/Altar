@@ -77,7 +77,7 @@ function formatter(number) {
 
 function stabFinger(type) {
     if (type == 'manual') {gameData.blood += gameData.bloodPerClick * gameData.totalUpgrade};
-    if (type == 'automatic') {gameData.blood += gameData.bloodPerAutoClick * gameData.totalUpgrade};
+    if (type == 'automatic') {gameData.blood += gameData.bloodPerAutoClick * gameData.totalAutoUpgrade};
 }
 
 function buyBloodPerClick(type) {
