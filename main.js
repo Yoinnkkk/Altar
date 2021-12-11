@@ -191,7 +191,7 @@ function upgradeButton() {
         document.getElementById('researchBar').appendChild(button);
         button.id = upgrades.something.id
         button.innerHTML = upgrades.something.name + "<br>" + upgrades.something.description + "<br>" + upgrades.something.price
-        button.addEventListener('click', function(){buyResearch(upgrades.something.name, upgrades.something.id);})
+        button.addEventListener('click', function(){buyResearch(upgrades.something.name, upgrades.something.id, upgrades.something.upgradeType);})
     }
     */
     var upgrades = gameData.upgrades
@@ -201,55 +201,54 @@ function upgradeButton() {
         document.getElementById('researchBar').appendChild(button);
         button.id = upgrades.upgradeKnife.id
         button.innerHTML = upgrades.upgradeKnife.name + "<br>" + upgrades.upgradeKnife.description + "<br>" + upgrades.upgradeKnife.price
-        button.addEventListener('click', function(){buyResearch(upgrades.upgradeKnife.id, upgrades.upgradeKnife.id);})
+        button.addEventListener('click', function(){buyResearch(upgrades.upgradeKnife.id, upgrades.upgradeKnife.id, upgrades.upgradeKnife.upgradeType);})
     }
     if (blood >= upgrades.sturdierSkin.price / 2 && document.getElementById(upgrades.sturdierSkin.id) == null && upgrades.sturdierSkin.bought == false) {
         var button = document.createElement('button');
         document.getElementById('researchBar').appendChild(button);
         button.id = upgrades.sturdierSkin.id
         button.innerHTML = upgrades.sturdierSkin.name + "<br>" + upgrades.sturdierSkin.description + "<br>" + upgrades.sturdierSkin.price
-        button.addEventListener('click', function(){buyResearch(upgrades.sturdierSkin.id, upgrades.sturdierSkin.id);})
+        button.addEventListener('click', function(){buyResearch(upgrades.sturdierSkin.id, upgrades.sturdierSkin.id, upgrades.sturdierSkin.upgradeType);})
     }
     if (blood >= upgrades.oiledGears.price / 2 && document.getElementById(upgrades.oiledGears.id) == null && upgrades.oiledGears.bought == false) {
         var button = document.createElement('button');
         document.getElementById('researchBar').appendChild(button);
         button.id = upgrades.oiledGears.id
         button.innerHTML = upgrades.oiledGears.name + "<br>" + upgrades.oiledGears.description + "<br>" + upgrades.oiledGears.price
-        button.addEventListener('click', function(){buyResearch(upgrades.oiledGears.name, upgrades.oiledGears.id);})
+        button.addEventListener('click', function(){buyResearch(upgrades.oiledGears.name, upgrades.oiledGears.id, upgrades.oiledGears.upgradeType);})
     }
     if (blood >= upgrades.qualityBricks.price / 2 && document.getElementById(upgrades.qualityBricks.id) == null && upgrades.qualityBricks.bought == false) {
         var button = document.createElement('button');
         document.getElementById('researchBar').appendChild(button);
         button.id = upgrades.qualityBricks.id
         button.innerHTML = upgrades.qualityBricks.name + "<br>" + upgrades.qualityBricks.description + "<br>" + upgrades.qualityBricks.price
-        button.addEventListener('click', function(){buyResearch(upgrades.qualityBricks.name, upgrades.qualityBricks.id);})
+        button.addEventListener('click', function(){buyResearch(upgrades.qualityBricks.name, upgrades.qualityBricks.id, upgrades.qualityBricks.upgradeType);})
     }
     if (blood >= upgrades.bloodThinner.price / 2 && document.getElementById(upgrades.bloodThinner.id) == null && upgrades.bloodThinner.bought == false) {
         var button = document.createElement('button');
         document.getElementById('researchBar').appendChild(button);
         button.id = upgrades.bloodThinner.id
         button.innerHTML = upgrades.bloodThinner.name + "<br>" + upgrades.bloodThinner.description + "<br>" + upgrades.bloodThinner.price
-        button.addEventListener('click', function(){buyResearch(upgrades.bloodThinner.name, upgrades.bloodThinner.id);})
+        button.addEventListener('click', function(){buyResearch(upgrades.bloodThinner.name, upgrades.bloodThinner.id, upgrades.bloodThinner.upgradeType);})
     }
     if (blood >= upgrades.bloodTransfusion.price / 2 && document.getElementById(upgrades.bloodTransfusion.id) == null && upgrades.bloodTransfusion.bought == false) {
         var button = document.createElement('button');
         document.getElementById('researchBar').appendChild(button);
         button.id = upgrades.bloodTransfusion.id
         button.innerHTML = upgrades.bloodTransfusion.name + "<br>" + upgrades.bloodTransfusion.description + "<br>" + upgrades.bloodTransfusion.price
-        button.addEventListener('click', function(){buyResearch(upgrades.bloodTransfusion.name, upgrades.bloodTransfusion.id);})
+        button.addEventListener('click', function(){buyResearch(upgrades.bloodTransfusion.name, upgrades.bloodTransfusion.id, upgrades.bloodTransfusion.upgradeType);})
     }
     if (blood >= upgrades.smootherFinish.price / 2 && document.getElementById(upgrades.smootherFinish.id) == null && upgrades.smootherFinish.bought == false) {
         var button = document.createElement('button');
         document.getElementById('researchBar').appendChild(button);
         button.id = upgrades.smootherFinish.id
         button.innerHTML = upgrades.smootherFinish.name + "<br>" + upgrades.smootherFinish.description + "<br>" + upgrades.smootherFinish.price
-        button.addEventListener('click', function(){buyResearch(upgrades.smootherFinish.name, upgrades.smootherFinish.id);})
+        button.addEventListener('click', function(){buyResearch(upgrades.smootherFinish.name, upgrades.smootherFinish.id, upgrades.smootherFinish.upgradeType);})
     }
 }
 
-function buyResearch(type, id) {
+function buyResearch(type, id, upgradeType) {
     var upgrade = gameData.upgrades[type]
-    var upgradeType = upgrade.upgradeType
     if (gameData.blood >= upgrade.price) {
         gameData.blood -= upgrade.price
         if (upgradeType == "manual") {gameData.totalUpgrade *= upgrade.upgrade} else if (upgradeType == "automatic") {gameData.totalAutoUpgrade *= upgrade.upgrade} else if (upgradeType == "total") {gameData.totalUpgrade *= upgrade.upgrade; gameData.totalUpgrade *= upgrade.upgrade;}
