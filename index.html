@@ -8,31 +8,35 @@
     <title>Altar</title>
 </head>
 <body style="background-color: rgb(45, 54, 63);">
-    <img id="bloodDrop" src="bloodDrop.png" height="35px" width="35px">
-    <p id="bloodGained" class="blood">Blood: 0</p>
+    <div id="bloodDisplay">
+        <img id="bloodDrop" src="bloodDrop.png" height="35px" width="35px">
+        <p id="bloodGained" class="blood">Blood: 0</p>
+    </div>
     <div id="navigationMenu">
         <button onclick="tab('stabFingerMenu')" >Main Menu</button>
         <button onclick="tab('shopMenu')" >Shop Menu</button>
         <button onclick="tab('settingsMenu')" >Settings </button>
     </div>
-    <div id="stabFingerMenu">
-        <button onclick="stabFinger('manual')" class="main-btn">Poke finger</button>
-    </div>
-    <div id="shopMenu">
-        <p id="bloodPerClickUI">Blood Per Click: 1</p>
-        <p id="bloodPerAutoClickUI">Automatic Generation: 1</p>
-        <div id="button-div">
-            <button onclick="buyBloodPerClick('manual')" id="perClickUpgrade" >Upgrade Pin: 10</button>
-            <button onclick="buyBloodPerClick('automatic')" id="perClickAutoUpgrade" >Upgrade Altar: 10</button>
+    <div id="subMenus">
+        <div id="stabFingerMenu">
+            <button onclick="stabFinger('manual')" class="main-btn">Poke finger</button>
         </div>
-        <div id="researchBar">
-        </div>    
-    </div>
-    <div id="settingsMenu">
-        <button onclick="clearData()" class="button-dngr" id="clearData">Clear Data!</button>
-        <button onclick="saveData()" id="saveData">Save Data</button>
-        <label id="autoSaveLabel" for="autosave-time">Autosave Time: 5</label>
-        <input oninput="updateSlider()" type="range" min="1" max="15" value="5" id="autosave-time">
+        <div id="shopMenu">
+            <p id="bloodPerClickUI">Blood Per Click: 1</p>
+            <p id="bloodPerAutoClickUI">Automatic Generation: 1</p>
+            <div id="button-div">
+                <button onclick="buyBloodPerClick('manual')" id="perClickUpgrade" >Upgrade Pin: 10</button>
+                <button onclick="buyBloodPerClick('automatic')" id="perClickAutoUpgrade" >Upgrade Altar: 10</button>
+            </div>
+            <div id="researchBar">
+            </div>    
+        </div>
+        <div id="settingsMenu">
+            <button onclick="clearData()" class="button-dngr" id="clearData">Clear Data!</button>
+            <button onclick="saveData()" id="saveData">Save Data</button>
+            <label id="autoSaveLabel" for="autosave-time">Autosave Time: 5</label>
+            <input oninput="updateSlider()" type="range" min="1" max="15" value="5" id="autosave-time">
+        </div>
     </div>
 
 </body>
