@@ -202,3 +202,12 @@ div.content {
     animation-name: button;
     animation-duration: 2s;
 }
+
+#navigationMenu .menuIcon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    height: 75px;
+    width: 75px;
+    transition-duration: 1.5s;
+}

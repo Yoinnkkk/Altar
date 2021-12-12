@@ -279,7 +279,7 @@ function upgradeButton() {
     }
 }
 
-function buyResearch(type, id, ) {
+function buyResearch(type, id) {
     var upgrade = gameData.upgrades[type]
     var upgradeType = upgrade.upgradeType
     if (gameData.blood >= upgrade.price) {
@@ -295,6 +295,28 @@ function buyResearch(type, id, ) {
         upgrade.bought = true
         document.getElementById('researchBar').removeChild(document.getElementById(id))
     }
+}
+var transformed = false
+function translateLogo() {
+    var menuIcon = document.getElementById('menuIcon')
+    if (transformed == false) {
+        menuIcon.style.transform = 'translateX(770px)'
+        menuIcon.style.transform += 'translateY(400px)'
+        console.log(menuIcon.style.height)
+        menuIcon.style.transform += 'scaleX(3)'
+        menuIcon.style.transform += 'scaleY(3)'
+        transformed = true
+        return 
+    }
+    if (transformed == true) {
+        menuIcon.style.transform = 'translateX(10px)'
+        menuIcon.style.transform += 'translateY(10px)'
+        menuIcon.style.transform += 'scaleX(1)'
+        menuIcon.style.transform += 'scaleY(1)'
+        transformed = false
+        return
+    }
+
 }
 
 
