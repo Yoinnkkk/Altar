@@ -296,12 +296,11 @@ function buyResearch(type, id) {
         document.getElementById('researchBar').removeChild(document.getElementById(id))
     }
 }
-
+var transformed = false
 function translateLogo() {
     var menuIcon = document.getElementById('menuIcon')
-    var transformed = false
     if (transformed == false) {
-        menuIcon.style.transform = 'translateX(790px)'
+        menuIcon.style.transform = 'translateX(770px)'
         menuIcon.style.transform += 'translateY(400px)'
         console.log(menuIcon.style.height)
         menuIcon.style.transform += 'scaleX(3)'
@@ -310,8 +309,8 @@ function translateLogo() {
         return 
     }
     if (transformed == true) {
-        menuIcon.style.transform = 'translateX(50%)'
-        menuIcon.style.transform += 'translateY(50%)'
+        menuIcon.style.transform = 'translateX(10px)'
+        menuIcon.style.transform += 'translateY(10px)'
         menuIcon.style.transform += 'scaleX(1)'
         menuIcon.style.transform += 'scaleY(1)'
         transformed = false
