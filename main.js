@@ -300,8 +300,8 @@ var transformed = false
 function translateLogo() {
     var menuIcon = document.getElementById('menuIcon')
     if (transformed == false) {
-        menuIcon.style.transform = 'translateX(500%)'
-        menuIcon.style.transform += 'translateY(500%)'
+        menuIcon.style.transform = 'translateX(725px)'
+        menuIcon.style.transform += 'translateY(400px)'
         console.log(menuIcon.style.height)
         menuIcon.style.transform += 'scaleX(3)'
         menuIcon.style.transform += 'scaleY(3)'

@@ -204,7 +204,7 @@ div.content {
 }
 
 #navigationMenu .menuIcon {
-    position: absolute;
+    position: fixed;
     left: 1%;
     top: 1%;
     margin: auto;
