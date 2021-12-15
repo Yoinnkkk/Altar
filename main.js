@@ -4,7 +4,7 @@ var gameData = {
     bloodPerAutoClick: 0,
     bloodPerAutoClickCost: 10,
     bloodPerClickCost: 10,
-    lastTick: "Date.now()",
+    lastTick: Date.now(),
     timer: 60000,
     totalUpgrade: 1,
     totalAutoUpgrade: 1,
@@ -14,7 +14,7 @@ var gameData = {
             price: 300,
             upgrade: 2,
             description: "Change out that rusty knife, you might get tetanus...",
-            id: "upgradeKnife",
+            id: 1,
             bought: false,
             upgradeType: "manual"
         },
@@ -23,7 +23,7 @@ var gameData = {
             price: 500,
             upgrade: 2,
             description: "I guess your skin just got sturdier from all that poking!",
-            id: "sturdierSkin",
+            id: 2,
             bought: false,
             upgradeType: "manual"
         },
@@ -32,7 +32,7 @@ var gameData = {
             price: 1000,
             upgrade: 1.5,
             description: "Buy higher quality bricks for your altar.",
-            id: "qualityBricks",
+            id: 3,
             bought: false,
             upgradeType: "total"
         },
@@ -41,7 +41,7 @@ var gameData = {
             price: 3000,
             upgrade: 1.5,
             description: "Those new pills you bought really work a charm huh...",
-            id: "bloodThinner",
+            id: 4,
             bought: false,
             upgradeType: "manual"
         },
@@ -50,7 +50,7 @@ var gameData = {
             price: 3500,
             upgrade: 2,
             description: "The altar is filled with cracks and grooves, maybe you should polish it...",
-            id: "smootherFinish",
+            id: 5,
             bought: false,
             upgradeType: "total"
         },
@@ -59,7 +59,7 @@ var gameData = {
             price: 5000,
             upgrade: 2,
             description: "Those rusty gears will be highly outclassed by these ones!",
-            id: "oiledGears",
+            id: 6,
             bought: false,
             upgradeType: "automatic"
         },
@@ -68,7 +68,7 @@ var gameData = {
             price: 10000,
             upgrade: 3,
             description: "You heard theres 'Golden' blood in hospitals, no idea how you'll get it into your body but go with it",
-            id: "bloodTransfusion",
+            id: 7,
             bought: false,
             upgradeType: "manual"
         },
@@ -77,7 +77,7 @@ var gameData = {
             price: 13250,
             upgrade: 2,
             description: "Should it really be making those noises?",
-            id: "reworkedMechanics",
+            id: 8,
             bought: false,
             upgradeType: "automatic"
         },
@@ -86,14 +86,13 @@ var gameData = {
             price: 30000,
             upgrade: 2,
             description: "What if you took multiple of those pills you bought earlier... just maybe...",
-            id: "overdose",
+            id: 9,
             bought: false,
             upgradeType: "manual"
         }
     }
 }
 
-console.log(gameData.timer)
 var saveGameLoop = window.setInterval(function() {
     localStorage.setItem("AltarSave", JSON.stringify(gameData))
 }, gameData.timer)
@@ -103,7 +102,7 @@ if (savedGame !== null) {
     gameData = savedGame
     diff = Date.now() - gameData.lastTick;
     gameData.lastTick = Date.now()
-    gameData.blood += gameData.bloodPerAutoClick * (diff/ 500)
+    gameData.blood += gameData.bloodPerAutoClick * (diff / 500)
     document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + savedGame.timer / 60000 + " Minute(s)"
 }
 
@@ -122,7 +121,6 @@ function updateValues() {
 
 var ValueLoader = window.setInterval( function() { 
     updateValues()
-    upgradeButton()
 }, 100)
 
 function formatter(number) {
@@ -188,26 +186,27 @@ function updateSlider() {
 
 var mainGameLoop = window.setInterval(function() {
     stabFinger('automatic');
+    buttonProduction();
 }, 500)
 
-function upgradeButton() {
-    var upgrades = gameData.upgrades
+
+function buttonProduction() {
+    var listofupgrades = gameData.upgrades
     var blood = gameData.blood
-    for (var i = 1; i < (Object.keys(gameData).length - 1); i++) {
-        if (blood >= upgrades[i].price / 2 && document.getElementById(upgrades[i].id) == null && upgrades[i].bought == false) {
-            var button = document.createElement('button');
-            document.getElementById('researchBar').appendChild(button);
-            button.id = upgrades[i].id
-            button.innerHTML = upgrades[i].name + "<br>" + upgrades[i].description + "<br>" + upgrades[i].price
-            button.addEventListener('click', function () {buyResearch(i)})
+    for (var i = 1; i < Object.keys(gameData).length; i++) {
+        if (listofupgrades[i].bought == false && blood >= listofupgrades[i].price / 2 && document.getElementById(listofupgrades[i].id) == null  ) {
+            var bar = document.getElementById('researchBar');
+            bar.innerHTML = "<button onclick='buyResearch()' id='id'>" + listofupgrades[i].name + "<br>" + listofupgrades[i].description + "<br>" + listofupgrades[i].price + "<button>";
         }
     }
+    i--
 }
 
-function buyResearch(i) {
-    var upgrade = gameData.upgrades[i]
-    console.log(i)
-    var upgradeType = upgrade.upgradeType
+
+function buyResearch(button) {
+    console.log(button.id)
+    var upgrade = gameData.upgrades[button.id]
+    var upgradeType = gameData.upgrades[button.id].upgradeType
     if (gameData.blood >= upgrade.price) {
         gameData.blood -= upgrade.price
         if (upgradeType == "manual") {
@@ -219,7 +218,8 @@ function buyResearch(i) {
             gameData.totalAutoUpgrade *= upgrade.upgrade;
         }
         upgrade.bought = true
-        document.getElementById('researchBar').removeChild(document.getElementById(upgrade.id))
+        console.log(upgrade.bought)
+        document.getElementById('researchBar').removeChild(document.getElementById(button.id))
     }
 }
 
