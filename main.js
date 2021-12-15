@@ -1,4 +1,4 @@
-gameData = {
+var gameData = {
     blood: 0,
     bloodPerClick: 1,
     bloodPerAutoClick: 0,
@@ -93,6 +93,7 @@ gameData = {
     }
 }
 
+console.log(gameData.timer)
 var saveGameLoop = window.setInterval(function() {
     localStorage.setItem("AltarSave", JSON.stringify(gameData))
 }, gameData.timer)
