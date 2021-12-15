@@ -1,109 +1,4 @@
-/*
-Upgrades template
-        templateName: {
-            name: "Template Name",
-            price: integer,
-            upgrade: integer,
-            description: "unus ex nobis",
-            id: "templateName",
-            bought: false,
-            upgradeType: "manual, automatic, total",
-        },
-*/
-var gameData = {
-    blood: 0,
-    bloodPerClick: 1,
-    bloodPerAutoClick: 0,
-    bloodPerAutoClickCost: 10,
-    bloodPerClickCost: 10,
-    lastTick: Date.now(),
-    timer: 5000,
-    totalUpgrade: 1,
-    totalAutoUpgrade: 1,
-    upgrades: {
-        upgradeKnife: {
-            name: "Upgrade Knife",
-            price: 300,
-            upgrade: 2,
-            description: "Change out that rusty knife, you might get tetanus...",
-            id: "upgradeKnife",
-            bought: false,
-            upgradeType: "manual",
-        },
-        sturdierSkin: {
-            name: "Sturdier Skin",
-            price: 500,
-            upgrade: 2,
-            description: "I guess your skin just got sturdier from all that poking!",
-            id: "sturdierSkin",
-            bought: false,
-            upgradeType: "manual",
-        },
-        qualityBricks: {
-            name: "Higher Quality Bricks",
-            price: 1000,
-            upgrade: 1.5,
-            description: "Buy higher quality bricks for your altar.",
-            id: "qualityBricks",
-            bought: false,
-            upgradeType: "total",
-        },
-        bloodThinner: {
-            name: "Blood Thinners",
-            price: 3000,
-            upgrade: 1.5,
-            description: "Those new pills you bought really work a charm huh...",
-            id: "bloodThinner",
-            bought: false,
-            upgradeType: "manual",
-        },
-        smootherFinish: {
-            name: "Polish the altar",
-            price: 3500,
-            upgrade: 2,
-            description: "The altar is filled with cracks and grooves, maybe you should polish it...",
-            id: "smootherFinish",
-            bought: false,
-            upgradeType: "total",
-        },
-        oiledGears: {
-            name: "Oiled Gears",
-            price: 5000,
-            upgrade: 2,
-            description: "Those rusty gears will be highly outclassed by these ones!",
-            id: "oiledGears",
-            bought: false,
-            upgradeType: "automatic",
-        },
-        bloodTransfusion: {
-            name: "Change your blood",
-            price: 10000,
-            upgrade: 3,
-            description: "You heard theres 'Golden' blood in hospitals, no idea how you'll get it into your body but go with it",
-            id: "bloodTransfusion",
-            bought: false,
-            upgradeType: "manual",
-        },
-        reworkedMechanics: {
-            name: "Rebuild the automatic machine",
-            price: 13250,
-            upgrade: 2,
-            description: "Should it really be making those noises?",
-            id: "reworkedMechanics",
-            bought: false,
-            upgradeType: "automatic",
-        },
-        overdose: {
-            name: "Maybe a little too much",
-            price: 30000,
-            upgrade: 2,
-            description: "What if you took multiple of those pills you bought earlier... just maybe...",
-            id: "overdose",
-            bought: false,
-            upgradeType: "manual",
-        },
-    },   
-}
+var gameData = fetch('./gameData.json')
 
 var saveGameLoop = window.setInterval(function() {
     localStorage.setItem("AltarSave", JSON.stringify(gameData))
@@ -115,7 +10,7 @@ if (savedGame !== null) {
     diff = Date.now() - gameData.lastTick;
     gameData.lastTick = Date.now()
     gameData.blood += gameData.bloodPerAutoClick * (diff/ 500)
-    document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + savedGame.timer / 1000 + " Minute(s)"
+    document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + savedGame.timer / 60000 + " Minute(s)"
 }
 
 function updateValues() {
@@ -202,85 +97,22 @@ var mainGameLoop = window.setInterval(function() {
 }, 500)
 
 function upgradeButton() {
-    /*  
-    Template:
-    if (blood >= upgrades.something.price / 2 && document.getElementById(upgrades.something.id) == null && upgrades.something.bought == false) {
-        var button = document.createElement('button');
-        document.getElementById('researchBar').appendChild(button);
-        button.id = upgrades.something.id
-        button.innerHTML = upgrades.something.name + "<br>" + upgrades.something.description + "<br>" + upgrades.something.price
-        button.addEventListener('click', function(){buyResearch(upgrades.something.id, upgrades.something.id);})
-    }
-    */
     var upgrades = gameData.upgrades
     var blood = gameData.blood
-    if (blood >= upgrades.upgradeKnife.price / 2 && document.getElementById(upgrades.upgradeKnife.id) == null && upgrades.upgradeKnife.bought == false) {
-        var button = document.createElement('button');
-        document.getElementById('researchBar').appendChild(button);
-        button.id = upgrades.upgradeKnife.id
-        button.innerHTML = upgrades.upgradeKnife.name + "<br>" + upgrades.upgradeKnife.description + "<br>" + upgrades.upgradeKnife.price
-        button.addEventListener('click', function(){buyResearch(upgrades.upgradeKnife.id, upgrades.upgradeKnife.id);})
-    }
-    if (blood >= upgrades.sturdierSkin.price / 2 && document.getElementById(upgrades.sturdierSkin.id) == null && upgrades.sturdierSkin.bought == false) {
-        var button = document.createElement('button');
-        document.getElementById('researchBar').appendChild(button);
-        button.id = upgrades.sturdierSkin.id
-        button.innerHTML = upgrades.sturdierSkin.name + "<br>" + upgrades.sturdierSkin.description + "<br>" + upgrades.sturdierSkin.price
-        button.addEventListener('click', function(){buyResearch(upgrades.sturdierSkin.id, upgrades.sturdierSkin.id);})
-    }
-    if (blood >= upgrades.qualityBricks.price / 2 && document.getElementById(upgrades.qualityBricks.id) == null && upgrades.qualityBricks.bought == false) {
-        var button = document.createElement('button');
-        document.getElementById('researchBar').appendChild(button);
-        button.id = upgrades.qualityBricks.id
-        button.innerHTML = upgrades.qualityBricks.name + "<br>" + upgrades.qualityBricks.description + "<br>" + upgrades.qualityBricks.price
-        button.addEventListener('click', function(){buyResearch(upgrades.qualityBricks.id, upgrades.qualityBricks.id);})
-    }
-    if (blood >= upgrades.bloodThinner.price / 2 && document.getElementById(upgrades.bloodThinner.id) == null && upgrades.bloodThinner.bought == false) {
-        var button = document.createElement('button');
-        document.getElementById('researchBar').appendChild(button);
-        button.id = upgrades.bloodThinner.id
-        button.innerHTML = upgrades.bloodThinner.name + "<br>" + upgrades.bloodThinner.description + "<br>" + upgrades.bloodThinner.price
-        button.addEventListener('click', function(){buyResearch(upgrades.bloodThinner.id, upgrades.bloodThinner.id);})
-    }
-    if (blood >= upgrades.smootherFinish.price / 2 && document.getElementById(upgrades.smootherFinish.id) == null && upgrades.smootherFinish.bought == false) {
-        var button = document.createElement('button');
-        document.getElementById('researchBar').appendChild(button);
-        button.id = upgrades.smootherFinish.id
-        button.innerHTML = upgrades.smootherFinish.name + "<br>" + upgrades.smootherFinish.description + "<br>" + upgrades.smootherFinish.price
-        button.addEventListener('click', function(){buyResearch(upgrades.smootherFinish.id, upgrades.smootherFinish.id);})
-    }
-    if (blood >= upgrades.oiledGears.price / 2 && document.getElementById(upgrades.oiledGears.id) == null && upgrades.oiledGears.bought == false) {
-        var button = document.createElement('button');
-        document.getElementById('researchBar').appendChild(button);
-        button.id = upgrades.oiledGears.id
-        button.innerHTML = upgrades.oiledGears.name + "<br>" + upgrades.oiledGears.description + "<br>" + upgrades.oiledGears.price
-        button.addEventListener('click', function(){buyResearch(upgrades.oiledGears.id, upgrades.oiledGears.id);})
-    }
-    if (blood >= upgrades.bloodTransfusion.price / 2 && document.getElementById(upgrades.bloodTransfusion.id) == null && upgrades.bloodTransfusion.bought == false) {
-        var button = document.createElement('button');
-        document.getElementById('researchBar').appendChild(button);
-        button.id = upgrades.bloodTransfusion.id
-        button.innerHTML = upgrades.bloodTransfusion.name + "<br>" + upgrades.bloodTransfusion.description + "<br>" + upgrades.bloodTransfusion.price
-        button.addEventListener('click', function(){buyResearch(upgrades.bloodTransfusion.id, upgrades.bloodTransfusion.id);})
-    }
-    if (blood >= upgrades.reworkedMechanics.price / 2 && document.getElementById(upgrades.reworkedMechanics.id) == null && upgrades.reworkedMechanics.bought == false) {
-        var button = document.createElement('button');
-        document.getElementById('researchBar').appendChild(button);
-        button.id = upgrades.reworkedMechanics.id
-        button.innerHTML = upgrades.reworkedMechanics.name + "<br>" + upgrades.reworkedMechanics.description + "<br>" + upgrades.reworkedMechanics.price
-        button.addEventListener('click', function(){buyResearch(upgrades.reworkedMechanics.id, upgrades.reworkedMechanics.id);})
-    }
-    if (blood >= upgrades.overdose.price / 2 && document.getElementById(upgrades.overdose.id) == null && upgrades.overdose.bought == false) {
-        var button = document.createElement('button');
-        document.getElementById('researchBar').appendChild(button);
-        button.id = upgrades.overdose.id
-        button.innerHTML = upgrades.overdose.name + "<br>" + upgrades.overdose.description + "<br>" + upgrades.overdose.price
-        button.addEventListener('click', function(){buyResearch(upgrades.overdose.id, upgrades.overdose.id);})
+    for (var i = 1; i < (Object.keys(gameData).length - 1); i++) {
+        if (blood >= upgrades[i].price / 2 && document.getElementById(upgrades[i].id) == null && upgrades[i].bought == false) {
+            var button = document.createElement('button');
+            document.getElementById('researchBar').appendChild(button);
+            button.id = upgrades[i].id
+            button.innerHTML = upgrades[i].name + "<br>" + upgrades[i].description + "<br>" + upgrades[i].price
+            button.addEventListener('click', function () {buyResearch(i)})
+        }
     }
 }
 
-function buyResearch(type, id) {
-    var upgrade = gameData.upgrades[type]
+function buyResearch(i) {
+    var upgrade = gameData.upgrades[i]
+    console.log(i)
     var upgradeType = upgrade.upgradeType
     if (gameData.blood >= upgrade.price) {
         gameData.blood -= upgrade.price
@@ -293,9 +125,10 @@ function buyResearch(type, id) {
             gameData.totalAutoUpgrade *= upgrade.upgrade;
         }
         upgrade.bought = true
-        document.getElementById('researchBar').removeChild(document.getElementById(id))
+        document.getElementById('researchBar').removeChild(document.getElementById(upgrade.id))
     }
 }
+
 var transformed = false
 function translateLogo() {
     var menuIcon = document.getElementById('menuIcon')
@@ -324,7 +157,7 @@ function translateLogo() {
 if (typeof savedGame.blood !== "undefined") gameData.blood = savedGame.blood;
 if (typeof savedGame.bloodPerAutoClick !== "undefined") gameData.bloodPerAutoClick = savedGame.bloodPerAutoClick;
 if (typeof savedGame.bloodPerClick !== "undefined") gameData.bloodPerClick = savedGame.bloodPerClick;
-if (typeof savedGame.bloodPerAutoClickCost !== "underfined") gameData.bloodPerAutoClickCost = savedGame.bloodPerAutoClickCost;
+if (typeof savedGame.bloodPerAutoClickCost !== "undefined") gameData.bloodPerAutoClickCost = savedGame.bloodPerAutoClickCost;
 if (typeof savedGame.buyBloodPerClick !== "undefined") gameData.buyBloodPerClick = savedGame.buyBloodPerClick;
 if (typeof savedGame.lastTick !== "undefined") gameData.lastTick = savedGame.lastTick;
 if (typeof savedGame.timer !== "undefined") gameData.timer = savedGame.timer;
