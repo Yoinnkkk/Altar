@@ -213,7 +213,7 @@ var mainGameLoop = window.setInterval(function() {
 function buttonProduction() {
     var listofupgrades = gameData.upgrades
     var blood = gameData.blood
-    for (var i = 1; i < Object.keys(gameData.upgrades).length; ++i) {
+    for (var i = 1; i < (Object.keys(gameData.upgrades).length + 1); ++i) {
         if (listofupgrades[i].bought == false && blood >= listofupgrades[i].price / 2 && document.getElementById(listofupgrades[i].id) == null  ) {
             var bar = document.getElementById('researchBar');
             var button = document.createElement('button')
@@ -250,7 +250,6 @@ function buyResearch(button) {
 }
 
 function createButtonInNav(upgradeInfo) {
-    if (!upgradeInfo.upgradeType === "newbutton") {return false}
     const navDiv = document.getElementById('navigationMenu');
     var button = document.createElement('button');
     console.log(upgradeInfo)
