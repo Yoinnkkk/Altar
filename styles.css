@@ -212,3 +212,7 @@ div.content {
     width: 75px;
     transition-duration: 1.5s;
 }
+
+#navigationMenu .volunteers {
+    display: none;
+}

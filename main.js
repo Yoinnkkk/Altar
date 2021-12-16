@@ -89,7 +89,17 @@ var gameData = {
             id: 9,
             bought: false,
             upgradeType: "manual"
-        }
+        },
+        10: {
+            name: "Acquire 'Volunteers'...",
+            price: 50000,
+            upgrade: 4,
+            description: "I swear they signed the form",
+            id: 10,
+            bought: false,
+            upgradeType: "newbutton",
+            upgradeTypeSpecific: "volunteers"
+        },
     }
 }
 
@@ -199,7 +209,7 @@ function buttonProduction() {
             var button = document.createElement('button')
             bar.appendChild(button)
             button.id = listofupgrades[i].id
-            button.innerHTML =  listofupgrades[i].name + "<br>" + listofupgrades[i].description + "<br>" + listofupgrades[i].price;
+            button.innerHTML =  listofupgrades[i].name + "   " + listofupgrades[i].upgradeType + "<br>" + listofupgrades[i].description + "<br>" + listofupgrades[i].price;
             button.addEventListener('click', function() {buyResearch(this.id)})
         }
     }
@@ -220,10 +230,18 @@ function buyResearch(button) {
         } else if (upgradeType == "total") {
             gameData.totalUpgrade *= upgrade.upgrade;
             gameData.totalAutoUpgrade *= upgrade.upgrade;
+        } else if (upgradeType == "newbutton") {
+            showMenuButton(upgrade.upgradeTypeSpecific)
         }
         upgrade.bought = true
         console.log(upgrade.bought)
         document.getElementById('researchBar').removeChild(document.getElementById(button))
+    }
+}
+
+function showMenuButton(specific) {
+    if (specific == "volunteers") {
+        document.getElementById("volunteers").style.display = "flex";
     }
 }
 
