@@ -91,7 +91,7 @@ var gameData = {
             upgradeType: "manual"
         },
         10: {
-            name: "Acquire 'Volunteers'...",
+            name: "Acquire Volunteers...",
             price: 50000,
             upgrade: 4,
             description: "I swear they signed the form",
@@ -99,6 +99,15 @@ var gameData = {
             bought: false,
             upgradeType: "newbutton",
             upgradeTypeSpecific: "volunteers"
+        },
+        11: {
+            name: "More potent blood thinners",
+            price: 100000,
+            upgrade: 2,
+            description: "These ones are stronger!",
+            id: 11,
+            bought: false,
+            upgradeType: "total",
         },
     }
 }
@@ -203,17 +212,16 @@ var mainGameLoop = window.setInterval(function() {
 function buttonProduction() {
     var listofupgrades = gameData.upgrades
     var blood = gameData.blood
-    for (var i = 1; i < Object.keys(gameData).length; i++) {
+    for (var i = 1; i < Object.keys(gameData.upgrades).length; ++i) {
         if (listofupgrades[i].bought == false && blood >= listofupgrades[i].price / 2 && document.getElementById(listofupgrades[i].id) == null  ) {
             var bar = document.getElementById('researchBar');
             var button = document.createElement('button')
             bar.appendChild(button)
             button.id = listofupgrades[i].id
-            button.innerHTML =  listofupgrades[i].name + "   " + listofupgrades[i].upgradeType + "<br>" + listofupgrades[i].description + "<br>" + listofupgrades[i].price;
+            button.innerHTML =  listofupgrades[i].name + "<br>" + listofupgrades[i].description + "<br>" + listofupgrades[i].price;
             button.addEventListener('click', function() {buyResearch(this.id)})
         }
     }
-    i--
 }
 
 
@@ -232,6 +240,7 @@ function buyResearch(button) {
             gameData.totalAutoUpgrade *= upgrade.upgrade;
         } else if (upgradeType == "newbutton") {
             showMenuButton(upgrade.upgradeTypeSpecific)
+            console.log('done')
         }
         upgrade.bought = true
         console.log(upgrade.bought)

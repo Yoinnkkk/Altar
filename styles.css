@@ -174,7 +174,7 @@ button:hover {
     padding: 0;
     width: 300px;
     background-color: rgb(45, 54, 63);
-    overflow: auto;
+    overflow: hidden;
     border-style: solid;
     border-width: thin;
     position: absolute;
