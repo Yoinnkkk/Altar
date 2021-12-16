@@ -196,7 +196,11 @@ function buttonProduction() {
     for (var i = 1; i < Object.keys(gameData).length; i++) {
         if (listofupgrades[i].bought == false && blood >= listofupgrades[i].price / 2 && document.getElementById(listofupgrades[i].id) == null  ) {
             var bar = document.getElementById('researchBar');
-            bar.innerHTML = "<button onclick='buyResearch()' id='id'>" + listofupgrades[i].name + "<br>" + listofupgrades[i].description + "<br>" + listofupgrades[i].price + "<button>";
+            var button = document.createElement('button')
+            bar.appendChild(button)
+            button.id = listofupgrades[i].id
+            button.innerHTML =  listofupgrades[i].name + "<br>" + listofupgrades[i].description + "<br>" + listofupgrades[i].price;
+            button.addEventListener('click', function() {buyResearch(this.id)})
         }
     }
     i--
@@ -204,9 +208,9 @@ function buttonProduction() {
 
 
 function buyResearch(button) {
-    console.log(button.id)
-    var upgrade = gameData.upgrades[button.id]
-    var upgradeType = gameData.upgrades[button.id].upgradeType
+    console.log(button)
+    var upgrade = gameData.upgrades[button]
+    var upgradeType = gameData.upgrades[button].upgradeType
     if (gameData.blood >= upgrade.price) {
         gameData.blood -= upgrade.price
         if (upgradeType == "manual") {
@@ -219,7 +223,7 @@ function buyResearch(button) {
         }
         upgrade.bought = true
         console.log(upgrade.bought)
-        document.getElementById('researchBar').removeChild(document.getElementById(button.id))
+        document.getElementById('researchBar').removeChild(document.getElementById(button))
     }
 }
 
