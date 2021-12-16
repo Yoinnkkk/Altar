@@ -98,7 +98,8 @@ var gameData = {
             id: 10,
             bought: false,
             upgradeType: "newbutton",
-            upgradeTypeSpecific: "volunteers"
+            upgradeTypeSpecific: "volunteers",
+            buttonName: "\"Volunteers\""
         },
         11: {
             name: "More potent blood thinners",
@@ -239,7 +240,7 @@ function buyResearch(button) {
             gameData.totalUpgrade *= upgrade.upgrade;
             gameData.totalAutoUpgrade *= upgrade.upgrade;
         } else if (upgradeType == "newbutton") {
-            showMenuButton(upgrade.upgradeTypeSpecific)
+            createButtonInNav(gameData.upgrades[button])
             console.log('done')
         }
         upgrade.bought = true
@@ -248,11 +249,23 @@ function buyResearch(button) {
     }
 }
 
-function showMenuButton(specific) {
-    if (specific == "volunteers") {
-        document.getElementById("volunteers").style.display = "flex";
-    }
+function createButtonInNav(upgradeInfo) {
+    if (!upgradeInfo.upgradeType === "newbutton") {return false}
+    const navDiv = document.getElementById('navigationMenu');
+    var button = document.createElement('button');
+    console.log(upgradeInfo)
+    button.innerHTML = upgradeInfo.buttonName;
+    button.addEventListener('click', function() {
+        newButtonFunctions(upgradeInfo.id)
+    })
+
+    navDiv.appendChild(button)
 }
+
+function newButtonFunctions(upgradeID) {
+    console.log(upgradeID)
+}
+
 
 var transformed = false
 function translateLogo() {
