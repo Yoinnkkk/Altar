@@ -263,6 +263,7 @@ function createButtonInNav(upgradeInfo) {
 
 function newButtonFunctions(upgradeID) {
     console.log(upgradeID)
+
 }
 
 
