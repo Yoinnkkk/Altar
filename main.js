@@ -123,7 +123,8 @@ if (savedGame !== null) {
     diff = Date.now() - gameData.lastTick;
     gameData.lastTick = Date.now()
     gameData.blood += gameData.bloodPerAutoClick * (diff / 500)
-    document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + savedGame.timer / 60000 + " Minute(s)"
+    document.getElementById("autosave-time").value = gameData.timer / 600000
+    document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + gameData.timer / 60000 + " Minute(s)"
 }
 
 function updateValues() {
@@ -201,7 +202,7 @@ function saveData() {
 
 function updateSlider() {
     document.getElementById("autoSaveLabel").innerHTML = "Autosave Time: " + document.getElementById("autosave-time").value + " Minute(s)";
-    gameData.timer = document.getElementById("autosave-time").value * 1000
+    gameData.timer = document.getElementById("autosave-time").value * 60000
 }
 
 var mainGameLoop = window.setInterval(function() {
@@ -227,7 +228,6 @@ function buttonProduction() {
 
 
 function buyResearch(button) {
-    console.log(button)
     var upgrade = gameData.upgrades[button]
     var upgradeType = gameData.upgrades[button].upgradeType
     if (gameData.blood >= upgrade.price) {
@@ -241,10 +241,8 @@ function buyResearch(button) {
             gameData.totalAutoUpgrade *= upgrade.upgrade;
         } else if (upgradeType == "newbutton") {
             createButtonInNav(gameData.upgrades[button])
-            console.log('done')
         }
         upgrade.bought = true
-        console.log(upgrade.bought)
         document.getElementById('researchBar').removeChild(document.getElementById(button))
     }
 }
@@ -252,7 +250,6 @@ function buyResearch(button) {
 function createButtonInNav(upgradeInfo) {
     const navDiv = document.getElementById('navigationMenu');
     var button = document.createElement('button');
-    console.log(upgradeInfo)
     button.innerHTML = upgradeInfo.buttonName;
     button.addEventListener('click', function() {
         newButtonFunctions(upgradeInfo.id)
@@ -262,7 +259,6 @@ function createButtonInNav(upgradeInfo) {
 }
 
 function newButtonFunctions(upgradeID) {
-    console.log(upgradeID)
 
 }
 
@@ -273,7 +269,6 @@ function translateLogo() {
     if (transformed == false) {
         menuIcon.style.transform = 'translateX(725px)'
         menuIcon.style.transform += 'translateY(400px)'
-        console.log(menuIcon.style.height)
         menuIcon.style.transform += 'scaleX(3)'
         menuIcon.style.transform += 'scaleY(3)'
         transformed = true
