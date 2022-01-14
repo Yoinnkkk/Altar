@@ -7,6 +7,7 @@ var gameData = {
     lastTick: Date.now(),
     timer: 60000,
     totalUpgrade: 1,
+    volunteerUnlock: false,
     totalAutoUpgrade: 1,
     upgrades: {
         1: {
@@ -138,6 +139,9 @@ function updateValues() {
         } else {
             document.getElementById('researchBar').style.display = "block" 
         }
+    if (gameData.volunteerUnlock == false) {
+        document.getElementById("volunteersButton").style.display = "none";
+    }
 }
 
 var ValueLoader = window.setInterval( function() { 
@@ -178,6 +182,7 @@ function tab(tab) {
     document.getElementById("stabFingerMenu").style.display = "none";
     document.getElementById("shopMenu").style.display = "none";
     document.getElementById("settingsMenu").style.display = "none";
+    document.getElementById("volunteersMenu").style.display = "none";
     document.getElementById("clearData").innerHTML = "Clear Data!";
     document.getElementById("saveData").innerHTML = "Save Data";
     document.getElementById("saveData").style.backgroundColor = "";
@@ -248,13 +253,10 @@ function buyResearch(button) {
 }
 
 function createButtonInNav(upgradeInfo) {
-    const navDiv = document.getElementById('navigationMenu');
-    var button = document.createElement('button');
-    button.innerHTML = upgradeInfo.buttonName;
-    button.addEventListener('click', function() {
-        newButtonFunctions(upgradeInfo.id)
-    })
-
+    var button = document.getElementById('volunteersButton')
+    if (gameData.volunteerUnlock == true) {
+        button.style.display = inline-block
+    }
     navDiv.appendChild(button)
 }
 

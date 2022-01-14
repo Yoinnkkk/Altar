@@ -17,7 +17,8 @@
         <input onclick="translateLogo()" type="image" src="Icon.png" class="menuIcon" id="menuIcon">
         <button onclick="tab('stabFingerMenu')" >Main Menu</button>
         <button onclick="tab('shopMenu')" >Shop Menu</button>
-        <button onclick="tab('settingsMenu')" >Settings </button>
+        <button onclick="tab('settingsMenu')" >Settings</button>
+        <button id="volunteersButton" onclick="tab('volunteersMenu')" >Volunteers</button>
     </div>
     <div id="subMenus">
         <div id="stabFingerMenu">
@@ -38,6 +39,9 @@
             <button onclick="saveData()" id="saveData">Save Data</button>
             <label id="autoSaveLabel" for="autosave-time">Autosave Time: 5 Minute(s)</label>
             <input oninput="updateSlider()" type="range" min="1" max="15" value="5" id="autosave-time">
+        </div>
+        <div id="volunteersMenu">
+
         </div>
     </div>
 
