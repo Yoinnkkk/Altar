@@ -1,5 +1,8 @@
-# Altar
-Incremental game
+# Altar,  A game about blood
 
-Created by MichaelPonders & Yoink, with help from Kuriman and Tommy
+
+
+
+
+**Created by MichaelPonders & Yoink, with help from Kuriman and Tommy**
 
