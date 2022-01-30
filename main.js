@@ -1,5 +1,5 @@
-var gameData = {
-    blood: 0,
+/*var gameData = {
+    blood: 1,
     bloodPerClick: 1,
     bloodPerAutoClick: 0,
     bloodPerAutoClickCost: 10,
@@ -8,6 +8,7 @@ var gameData = {
     timer: 60000,
     totalUpgrade: 1,
     totalAutoUpgrade: 1,
+    firstTime: true,
     upgrades: {
         1: {
             name: "Upgrade Knife",
@@ -112,6 +113,25 @@ var gameData = {
         },
     }
 }
+*/
+// first time optimisation
+document.getElementById('bloodDisplay').style.display = 'none';
+document.getElementById('navigationMenu').style.display = 'none';
+document.getElementById('stabFingerMenu').style.display = 'none';
+if (gameData.firstTime == true) {
+
+} else {
+    tab("stabFingerMenu");
+}
+
+
+
+
+
+
+
+
+
 
 var saveGameLoop = window.setInterval(function() {
     localStorage.setItem("AltarSave", JSON.stringify(gameData))
@@ -167,8 +187,8 @@ function buyBloodPerClick(type) {
     if (type == 'automatic') {
         if (gameData.blood >= gameData.bloodPerAutoClickCost) {
             gameData.blood -= gameData.bloodPerAutoClickCost
-            gameData.bloodPerAutoClick += 0.5
-            gameData.bloodPerAutoClickCost *= 1.5
+            gameData.bloodPerAutoClick += 1
+            gameData.bloodPerAutoClickCost *= 1.4
         }
     }
     
@@ -183,7 +203,7 @@ function tab(tab) {
     document.getElementById("saveData").style.backgroundColor = "";
     document.getElementById(tab).style.display = "flex";
 }
-tab("stabFingerMenu");
+
 
 function clearData() {
     if (document.getElementById("clearData").innerHTML == "Are you sure?") {
@@ -262,31 +282,6 @@ function newButtonFunctions(upgradeID) {
 
 }
 
-
-var transformed = false
-function translateLogo() {
-    var menuIcon = document.getElementById('menuIcon')
-    if (transformed == false) {
-        menuIcon.style.transform = 'translateX(725px)'
-        menuIcon.style.transform += 'translateY(400px)'
-        menuIcon.style.transform += 'scaleX(3)'
-        menuIcon.style.transform += 'scaleY(3)'
-        transformed = true
-        return 
-    }
-    if (transformed == true) {
-        menuIcon.style.transform = 'translateX(10px)'
-        menuIcon.style.transform += 'translateY(10px)'
-        menuIcon.style.transform += 'scaleX(1)'
-        menuIcon.style.transform += 'scaleY(1)'
-        transformed = false
-        return
-    }
-
-}
-
-
-
 if (typeof savedGame.blood !== "undefined") gameData.blood = savedGame.blood;
 if (typeof savedGame.bloodPerAutoClick !== "undefined") gameData.bloodPerAutoClick = savedGame.bloodPerAutoClick;
 if (typeof savedGame.bloodPerClick !== "undefined") gameData.bloodPerClick = savedGame.bloodPerClick;
@@ -295,3 +290,4 @@ if (typeof savedGame.buyBloodPerClick !== "undefined") gameData.buyBloodPerClick
 if (typeof savedGame.lastTick !== "undefined") gameData.lastTick = savedGame.lastTick;
 if (typeof savedGame.timer !== "undefined") gameData.timer = savedGame.timer;
 if (typeof savedGame.upgrades !== "undefined") gameData.upgrades = savedGame.upgrades;
+if (typeof savedGame.firstTime !== "undefined") gameData.firstTime = savedGame.firstTime;

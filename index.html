@@ -2,10 +2,20 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="FavIcon.png" sizes="16x16">
+    <link rel="icon" href="Icon.ico" sizes="16x16">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="startup.js" charset="utf-8"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQNCXG6182"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GQNCXG6182');
+    </script>
     <title>Altar</title>
 </head>
 <body style="background-color: rgb(45, 54, 63);">
@@ -14,7 +24,6 @@
         <p id="bloodGained" class="blood">Blood: 0</p>
     </div>
     <div id="navigationMenu">
-        <input onclick="translateLogo()" type="image" src="Icon.png" class="menuIcon" id="menuIcon">
         <button onclick="tab('stabFingerMenu')" >Main Menu</button>
         <button onclick="tab('shopMenu')" >Shop Menu</button>
         <button onclick="tab('settingsMenu')" >Settings </button>
@@ -42,5 +51,5 @@
     </div>
 
 </body>
-<script src="main.js" charset="utf-8" type="text/javascript"></script>
+
 </html>
