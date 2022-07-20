@@ -4,8 +4,12 @@
     font-family: "Roboto Slab";
 }
 
-html {
+:root {
+    --bcolour: rgb(30, 32, 34);
     --colour: rgb(45, 54, 63);
+}
+
+html {
     text-align: center;
     width: 100%;
     height: 90%;
@@ -25,6 +29,7 @@ body {
     height: 100%;
     padding: 0;
     margin: 0;
+    background-color: var(--bcolour);
 }
 
 #bloodDisplay p {
@@ -215,4 +220,21 @@ div.content {
 
 #navigationMenu .volunteers {
     display: none;
+}
+
+
+/* Blood drop div animation */
+.animcanvas {
+    height: 100vh;
+    width: 100vw;
+}
+
+.blooddrop {
+    height: 100px;
+    width: 100px;
+}
+
+@keyframes dropfall {
+    from {top: 100%;}
+    to {top: 0%}
 }

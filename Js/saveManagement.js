@@ -7,10 +7,11 @@ var saveGameLoop = window.setInterval(function() {
     localStorage.setItem("AltarSave", JSON.stringify(gameData))
 }, gameData.timer)
 // Nav button saving
+/*
 window.onbeforeunload = function(event) {
     localStorage.setItem("AltarSave", JSON.stringify(gameData))
 }
-
+*/
 
 // loading the saveGame
 var savedGame = JSON.parse(localStorage.getItem("AltarSave"))
