@@ -2,26 +2,17 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="Icon.ico" sizes="16x16">
+    <link rel="icon" href="Images/Icon.ico" sizes="16x16">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="startup.js" charset="utf-8"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQNCXG6182"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-GQNCXG6182');
-    </script>
+    <script type="text/javascript" src="Js/startup.js" charset="utf-8"></script>
     <title>Altar</title>
 </head>
-<body style="background-color: rgb(45, 54, 63);">
+<body style="background-color: rgb(30, 32, 34);">
     <div id="bloodDisplay">
-        <img id="bloodDrop" src="bloodDrop.png" height="35px" width="35px">
-        <p id="bloodGained" class="blood">Blood: 0</p>
+        <img id="bloodDrop" src="Images/bloodDrop.png" height="35px" width="35px">
+        <p id="bloodGained" class="blood">Blood: 0.0</p>
     </div>
     <div id="navigationMenu">
         <button onclick="tab('stabFingerMenu')" >Main Menu</button>
@@ -33,7 +24,7 @@
         <div id="stabFingerMenu">
             <button onclick="stabFinger('manual')" class="main-btn">Poke finger</button>
         </div>
-        <div id="shopMenu">
+        <div id="shopMenu" style="display: none;">
             <p id="bloodPerClickUI">Blood Per Click: 1</p>
             <p id="bloodPerAutoClickUI">Automatic Generation: 1</p>
             <div id="button-div">
@@ -43,13 +34,13 @@
             <div id="researchBar">
             </div>    
         </div>
-        <div id="settingsMenu">
+        <div id="settingsMenu" style="display: none;">
             <button onclick="clearData()" class="button-dngr" id="clearData">Clear Data!</button>
             <button onclick="saveData()" id="saveData">Save Data</button>
             <label id="autoSaveLabel" for="autosave-time">Autosave Time: 5 Minute(s)</label>
             <input oninput="updateSlider()" type="range" min="1" max="15" value="5" id="autosave-time">
         </div>
-        <div id="volunteersMenu">
+        <div id="volunteersMenu" style="display: none;">
 
         </div>
     </div>

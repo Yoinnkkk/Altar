@@ -1,18 +1,18 @@
-const slist = ["gameData.js","main.js","intro.js"]
+// Javascript file to load the rest of the javascript files
 
+const loadarray = ["gameData.js", "saveManagement.js","main.js","intro.js"]
 function loadScripts(path) {
     var header = document.getElementsByTagName('head')[0];
     var script = document.createElement('script');
     script.type = "text/javascript";
-    script.src = path
+    script.src = "Js/"+path
     header.appendChild(script);
 }
 i = 0
-console.log(slist);
-while (i < slist.length) {
-    loadScripts(slist[i]);
+while (i < loadarray.length) {
+    loadScripts(loadarray[i]);
     i++
-    if (slist[i] == 'gameData.js') {
+    if (loadarray[i] == 'gameData.js') {
         while (gameData == undefined || gameData == null) {}
     }
 }
