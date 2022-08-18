@@ -30,6 +30,7 @@ body {
     padding: 0;
     margin: 0;
     background-color: var(--bcolour);
+    overflow: hidden;
 }
 
 #bloodDisplay p {
@@ -225,16 +226,25 @@ div.content {
 
 /* Blood drop div animation */
 .animcanvas {
+    position: flex;
     height: 100vh;
     width: 100vw;
+    z-index: 100;
 }
 
 .blooddrop {
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    top: 0;
+    animation: dropfall 10ms linear forwards;
+}
+
+.blooddrop img {
+    max-width: 50%;
+    max-height: 50%;
 }
 
 @keyframes dropfall {
-    from {top: 100%;}
-    to {top: 0%}
+    to { transform: translateY(105vh) }
 }
